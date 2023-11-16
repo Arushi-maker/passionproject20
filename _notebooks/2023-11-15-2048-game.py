@@ -18,7 +18,7 @@ def add_new_tile(board):
 
 def print_board(board):
     clear_screen()
-    print("2048 Game:")
+    print("2048 in Binary")
     for row in board:
         print(" ".join(str(tile) if tile != 0 else '.' for tile in row))
     print()
