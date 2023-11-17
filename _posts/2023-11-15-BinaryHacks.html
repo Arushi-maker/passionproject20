@@ -3,18 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Background</title>
+    <title>Custom Background with Color Square</title>
+    <style>
+        .color-square {
+            width: 100px;
+            height: 100px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 
     <label for="red">Red:</label>
     <input type="number" id="red" min="0" max="255" value="0">
+    <input type="range" id="redSlider" min="0" max="255" value="0">
     
     <label for="green">Green:</label>
     <input type="number" id="green" min="0" max="255" value="0">
+    <input type="range" id="greenSlider" min="0" max="255" value="0">
     
     <label for="blue">Blue:</label>
     <input type="number" id="blue" min="0" max="255" value="0">
+    <input type="range" id="blueSlider" min="0" max="255" value="0">
     
     <button onclick="updateBackground()">Update Background</button>
 
@@ -30,6 +40,26 @@
 
             document.getElementById("background").style.backgroundColor = backgroundColor;
         }
+
+        window.addEventListener('load', function() {
+            var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'purple'];
+
+            function getRandomColorIndex() {
+                return Math.floor(Math.random() * colors.length);
+            }
+
+            var randomIndex = getRandomColorIndex();
+            var selectedColor = colors[randomIndex];
+
+            var squareElement = document.createElement('div');
+            squareElement.className = 'color-square';
+            squareElement.style.backgroundColor = selectedColor;
+
+            document.body.appendChild(squareElement);
+        });
     </script>
+
+    <script src="rgbslider.js"></script>
+
 </body>
 </html>
