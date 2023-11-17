@@ -1,2 +1,2 @@
-var colors = [red, orange, yellow, green, blue, purple]
+var colors = [red, orange, yellow, green, blue, indigo, purple]
 
