@@ -1,45 +1,35 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Color Wheel w/binary</title>
-    <style>
-        .color-square {
-            width: 100px;
-            height: 100px;
-            display: inline-block;
-            margin: 5px;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Background</title>
 </head>
-
 <body>
-    <h1>Instructions</h1>
-    <p>
-        Look at the computer’s color. Divide RGB values into pairs. Start with R and G. If R and G combinations are similar to the computer’s color, adjust R and G values to match the color exactly. Else, pick R and B. Repeat steps 2-4. Else, pick B and G. Repeat steps 2-4. Else, quit.
-    </p>
 
-    <h2>RGB Color Generator</h2>
+    <label for="red">Red:</label>
+    <input type="number" id="red" min="0" max="255" value="0">
+    
+    <label for="green">Green:</label>
+    <input type="number" id="green" min="0" max="255" value="0">
+    
+    <label for="blue">Blue:</label>
+    <input type="number" id="blue" min="0" max="255" value="0">
+    
+    <button onclick="updateBackground()">Update Background</button>
 
-    <div class="main">
-        Result:<input type="text" id="box"
-                value="rgb(255,255,255)">
-        <!--Range slider for red color-->
-        Red:<input type="range" id="red"
-                value="255" min="0" max="255">
-        
-        <!--Range slider for green color-->
-        Green:<input type="range" id="green"
-                value="255" min="0" max="255">
+    <div id="background" style="width: 100vw; height: 100vh;"></div>
 
-        <!--Range slider for blue color-->
-        Blue:<input type="range" id="blue"
-                value="255" min="0" max="255">
-    </div>
+    <script>
+        function updateBackground() {
+            var red = document.getElementById("red").value;
+            var green = document.getElementById("green").value;
+            var blue = document.getElementById("blue").value;
 
-    <script src="rgbslider.js"></script>
-    <script src="squares.js"></script>
+            var backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+
+            document.getElementById("background").style.backgroundColor = backgroundColor;
+        }
+    </script>
 </body>
-
 </html>
