@@ -26,9 +26,26 @@
             var green = document.getElementById("green").value;
             var blue = document.getElementById("blue").value;
 
-            var backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+            var hexColor = rgbToHex(red, green, blue);
+            var binaryColor = rgbToBinary(red, green, blue);
 
-            document.getElementById("background").style.backgroundColor = backgroundColor;
+            document.getElementById("background").style.backgroundColor = hexColor;
+
+            console.log("Hexadecimal Color:", hexColor);
+            console.log("Binary Color:", binaryColor);
+        }
+
+        function rgbToHex(r, g, b) {
+            return `#${(1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1)}`;
+        }
+
+        function rgbToBinary(r, g, b) {
+            return `${(r >>> 0).toString(2).padStart(8, '0')} ${(
+                g >>> 0
+            ).toString(2).padStart(8, '0')} ${(b >>> 0).toString(2).padStart(
+                8,
+                '0'
+            )}`;
         }
     </script>
 
