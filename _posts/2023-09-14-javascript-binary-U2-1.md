@@ -55,10 +55,10 @@ Jekyll Table Reference: https://idratherbewriting.com/documentation-theme-jekyll
     </tbody>
 </table>
 
-{% comment %}
+<!--
 Liquid for loop includes last number, thus the Minus
-{% endcomment %}
-{% assign bits = BITS | minus: 1 %} 
+-->
+<!-- assign bits = BITS | minus: 1 -->
 
 <table>
     <thead>
