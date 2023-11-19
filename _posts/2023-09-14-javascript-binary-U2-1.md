@@ -67,8 +67,8 @@ Liquid for loop includes last number, thus the Minus
             Build many bits
             {% endcomment %}
             for i in (0..bits)
-            <th><img id="bulb{{ i }}" src="{{site.baseurl}}/images/bulb_off.png" alt="" width="40" height="Auto">
-                <div class="button" id="butt{{ i }}" onclick="javascript:toggleBit({{ i }})">Turn on</div>
+            <th><img id="bulb" src="bulb_off.jpg" alt="" width="40" height="Auto">
+                <div class="button" id="button" onclick="javascript:toggleBit">Turn on</div>
             </th>
             {% endfor %}
         </tr>
@@ -79,7 +79,7 @@ Liquid for loop includes last number, thus the Minus
             Value of bit=8
             {% endcomment %}
             {% for i in (0..bits) %}
-            <td><input type='text' id="digit{{ i }}" Value="0" size="1" readonly></td>
+            <td><input type='text' id="digit" Value="0" size="1" readonly></td>
             {% endfor %}
         </tr>
     </tbody>
@@ -89,9 +89,9 @@ Liquid for loop includes last number, thus the Minus
     const BITS = {{ BITS }};
     const MAX = 2 ** BITS - 1;
     const MSG_ON = "Turn on";
-    const IMAGE_ON = "{{site.baseurl}}/images/bulb_on.gif";
+    const IMAGE_ON = "bulb_on.jpg";
     const MSG_OFF = "Turn off";
-    const IMAGE_OFF = "{{site.baseurl}}/images/bulb_off.png"
+    const IMAGE_OFF = "bulb_off.jpg"
 
     // return string with current value of each bit
     function getBits() {
