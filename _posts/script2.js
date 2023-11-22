@@ -1,28 +1,35 @@
-var redElement = document.GetElementByID ('red');
-var greenElement = document.GetElementByID ('green');
-var blueElement = document.GetElementByID ('blue');
+window.addEventListener('load', function() {
+    var colors = ['red', 'green', 'blue'];
 
-var redRGB = getRGB(redElement);
-var greenRGB = getRGB(greenElement);
-var blueRGB = getRGB(blueElement);
+    function convertToBinary(rgb) {
+        return rgb.map(decimalToBinary);
+    }
 
-var redBinary = convertToBinary(redRGB);
-var greenBinary = convertToBinary(greenRGB);
-var blueBinary = convertToBinary(blueRGB);
+    function decimalToBinary(decimal) {
+        return decimal.toString(2).padStart(8, '0');
+    }
 
-console.log('Binary representation of red:', redBinary);
-console.log('Binary representation of green:', greenBinary);
-console.log('Binary representation of blue:', blueBinary);
+    var redElement = document.GetElementByID ('red');
+    var greenElement = document.GetElementByID ('green');
+    var blueElement = document.GetElementByID ('blue');
 
-function getRGB(element) {
-    var rgbString = element.getAttribute('data-rgb');
-    return rgbString.split(',').map(Number);
-}
+    var redRGB = getRGB(redElement);
+    var greenRGB = getRGB(greenElement);
+    var blueRGB = getRGB(blueElement);
 
-function convertToBinary(rgb) {
-    return rgb.map(decimalToBinary);
-}
+    var redBinary = convertToBinary(redRGB);
+    var greenBinary = convertToBinary(greenRGB);
+    var blueBinary = convertToBinary(blueRGB);
 
-function decimalToBinary(decimal) {
-    return decimal.toString(2).padStart(8, '0');
-}
+    document.querySelector('h1').textContent = 'Binary Representation:';
+    document.querySelector('p').innerHTML = '
+        Red: ${redBinary.join('')}<br>
+        Green: ${greenBinary.join('')}<br>
+        Blue: ${blueBinary.join('')}
+    ';
+
+    function getRGB(element) {
+        var rgbString = element.getAttribute('data-rgb');
+        return rgbString.split(',').map(Number);
+    }
+});
