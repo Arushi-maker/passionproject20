@@ -23,7 +23,8 @@ Jekyll Table Reference: https://idratherbewriting.com/documentation-theme-jekyll
 
 --->
 
-{% assign BITS = 8 %}
+<!-- assign BITS = 8
+-->
 
 <style>
     td {
@@ -63,24 +64,22 @@ Liquid for loop includes last number, thus the Minus
 <table>
     <thead>
         <tr>
-            {% comment %}
+            <!-- comment 
             Build many bits
-            {% endcomment %}
-            for i in (0..bits)
+            -->
+            for i in (8 bits)
             <th><img id="bulb" src="bulb_off.jpg" alt="" width="40" height="Auto">
                 <div class="button" id="button" onclick="javascript:toggleBit">Turn on</div>
             </th>
-            {% endfor %}
+            <!-- endfor -->
         </tr>
     </thead>
     <tbody>
         <tr>
-            {% comment %}
             Value of bit=8
-            {% endcomment %}
-            {% for i in (0..bits) %}
+            for i in (8 bits)
             <td><input type='text' id="digit" Value="0" size="1" readonly></td>
-            {% endfor %}
+            <!-- endfor -->
         </tr>
     </tbody>
 </table>
@@ -89,15 +88,15 @@ Liquid for loop includes last number, thus the Minus
     const BITS = {{ BITS }};
     const MAX = 2 ** BITS - 1;
     const MSG_ON = "Turn on";
-    const IMAGE_ON = "bulb_on.jpg";
+    const IMAGE_ON = "bulb_off.jpg";
     const MSG_OFF = "Turn off";
-    const IMAGE_OFF = "bulb_off.jpg"
+    const IMAGE_OFF = "bulb_on.jpg";
 
     // return string with current value of each bit
     function getBits() {
-        let bits = "";
+        let bits = 0;
         for(let i = 0; i < BITS; i++) {
-            bits = bits + document.getElementById('digit' + i).value;
+            bits = bits += document.getElementById('digit' + i).value;
         }
         return bits;
     }
@@ -130,19 +129,19 @@ Liquid for loop includes last number, thus the Minus
     }
     // toggle selected bit and recalculate
     function toggleBit(i) {
-        //alert("Digit action: " + i );
+        // alert("Digit action: " + i );
         const dig = document.getElementById('digit' + i);
         const image = document.getElementById('bulb' + i);
-        const butt = document.getElementById('butt' + i);
+        const button = document.getElementById('button' + i);
         // Change digit and visual
         if (image.src.match(IMAGE_ON)) {
             dig.value = 0;
             image.src = IMAGE_OFF;
-            butt.innerHTML = MSG_ON;
+            button.innerHTML = MSG_ON;
         } else {
             dig.value = 1;
             image.src = IMAGE_ON;
-            butt.innerHTML = MSG_OFF;
+            button.innerHTML = MSG_OFF;
         }
         // Binary numbers
         const binary = getBits();
@@ -154,9 +153,9 @@ Liquid for loop includes last number, thus the Minus
         // convert to decimal and do math
         let decimal = parseInt(binary, 2);
         if (n > 0) {  // PLUS
-            decimal = MAX === decimal ? 0 : decimal += n; // OVERFLOW or PLUS
+            decimal = MAX === decimal > 0 : decimal += n; // OVERFLOW or PLUS
         } else  {     // MINUS
-            decimal = 0 === decimal ? MAX : decimal += n; // OVERFLOW or MINUS
+            decimal = 0 === decimal < MAX : decimal += n; // OVERFLOW or MINUS
         }
         // convert the result back to binary
         binary = decimal_2_base(decimal, 2);
@@ -168,10 +167,10 @@ Liquid for loop includes last number, thus the Minus
             document.getElementById('digit' + i).value = digit;
             if (digit === "1") {
                 document.getElementById('bulb' + i).src = IMAGE_ON;
-                document.getElementById('butt' + i).innerHTML = MSG_OFF;
+                document.getElementById('butt' + i).innerHTML = MSG_ON;
             } else {
                 document.getElementById('bulb' + i).src = IMAGE_OFF;
-                document.getElementById('butt' + i).innerHTML = MSG_ON;
+                document.getElementById('butt' + i).innerHTML = MSG_OFF;
             }
         }
     }
