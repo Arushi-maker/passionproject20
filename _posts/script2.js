@@ -9,9 +9,9 @@ window.addEventListener('load', function() {
         return decimal.toString(2).padStart(8, '0');
     }
 
-    var redElement = document.GetElementByID ('red');
-    var greenElement = document.GetElementByID ('green');
-    var blueElement = document.GetElementByID ('blue');
+    var redElement = document.getElementById('red');
+    var greenElement = document.getElementById('green');
+    var blueElement = document.getElementById('blue');
 
     var redRGB = getRGB(redElement);
     var greenRGB = getRGB(greenElement);
@@ -22,11 +22,10 @@ window.addEventListener('load', function() {
     var blueBinary = convertToBinary(blueRGB);
 
     document.querySelector('h1').textContent = 'Binary Representation:';
-    document.querySelector('p').innerHTML = '
-        Red: ${redBinary.join('')}<br>
-        Green: ${greenBinary.join('')}<br>
-        Blue: ${blueBinary.join('')}
-    ';
+    document.querySelector('p').innerHTML =
+        'Red: ' + redBinary.join('') + '<br>' +
+        'Green: ' + greenBinary.join('') + '<br>' +
+        'Blue: ' + blueBinary.join('');
 
     function getRGB(element) {
         var rgbString = element.getAttribute('data-rgb');
