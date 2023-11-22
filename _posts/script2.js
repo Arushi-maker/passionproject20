@@ -21,12 +21,13 @@ window.addEventListener('load', function() {
     var greenBinary = convertToBinary(greenRGB);
     var blueBinary = convertToBinary(blueRGB);
 
-    document.querySelector('h1').textContent = 'Binary Representation:';
-    document.querySelector('p').innerHTML =
-        'Red: ' + redBinary.join('') + '<br>' +
-        'Green: ' + greenBinary.join('') + '<br>' +
-        'Blue: ' + blueBinary.join('');
-
+    document.querySelector('h1').textContent += 'Binary Representation:';
+    document.querySelector('p').innerHTML += `<br>
+        Red: ${redBinary.join('')}<br>
+        Green: ${greenBinary.join('')}<br>
+        Blue: ${blueBinary.join('')}
+    `;
+    
     function getRGB(element) {
         var rgbString = element.getAttribute('data-rgb');
         return rgbString.split(',').map(Number);
