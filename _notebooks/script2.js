@@ -1,7 +1,28 @@
-var colors = [
-    red, green, blue
-]
-var ConvertToBinary = [
-    BinaryValue(red) = (255, 0, 0)
-    red = BinaryValue (red)
-]
+var redElement = document.GetElementByID ('red');
+var greenElement = document.GetElementByID ('green');
+var blueElement = document.GetElementByID ('blue');
+
+var redRGB = getRGB(redElement);
+var greenRGB = getRGB(greenElement);
+var blueRGB = getRGB(blueElement);
+
+var redBinary = convertToBinary(redRGB);
+var greenBinary = convertToBinary(greenRGB);
+var blueBinary = convertToBinary(blueRGB);
+
+console.log('Binary representation of red:', redBinary);
+console.log('Binary representation of green:', greenBinary);
+console.log('Binary representation of blue:', blueBinary);
+
+function getRGB(element) {
+    var rgbString = element.getAttribute('data-rgb');
+    return rgbString.split(',').map(Number);
+}
+
+function convertToBinary(rgb) {
+    return rgb.map(decimalToBinary);
+}
+
+function decimalToBinary(decimal) {
+    return decimal.toString(2).padStart(8, '0');
+}
