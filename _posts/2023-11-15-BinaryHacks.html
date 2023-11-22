@@ -26,9 +26,17 @@
             var green = document.getElementById("green").value;
             var blue = document.getElementById("blue").value;
 
+            var binaryRed = decimalToBinary(red);
+            var binaryGreen = decimalToBinary(green);
+            var binaryBlue = decimalToBinary(blue);
+
             var backgroundColor = `rgb(${red}, ${green}, ${blue})`;
 
             document.getElementById("background").style.backgroundColor = backgroundColor;
+        }
+
+        function decimalToBinary(decimal) {
+            return decimal.toString(2).padStart(8, '0');
         }
     </script>
 

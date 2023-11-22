@@ -37,3 +37,5 @@ document.getElementById('green')
 // function is called
 document.getElementById('blue')
     .addEventListener('input', myColor);
+
+    v
