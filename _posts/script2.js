@@ -22,7 +22,7 @@ window.addEventListener('load', function() {
     var blueBinary = convertToBinary(blueRGB);
 
     document.querySelector('h2').textContent += 'Binary Representation:';
-    document.querySelector('p').innerHTML += `<br>
+    document.querySelector('p2').innerHTML += `<br>
         Red: ${redBinary.join('')}<br>
         Green: ${greenBinary.join('')}<br>
         Blue: ${blueBinary.join('')}
