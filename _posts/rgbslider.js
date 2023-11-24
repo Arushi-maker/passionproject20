@@ -1,17 +1,17 @@
 function myColor() {
 
     // Get the value of red color
-    var red = document.getElementById('red').value;
+    var red = decimalToBinary(document.getElementById('red').value);
 
     // Get the value of green color
-    var green = document.getElementById('green').value;
+    var green = decimalToBinary(document.getElementById('green').value);
 
     // Get the value of blue color
-    var blue = document.getElementById('blue').value;
+    var blue = decimalToBinary(document.getElementById('blue').value);
 
     // rgb() function is used to create the color
     // from red, green and blue values
-    var color = 'rgb(' + red + ',' + green + ',' + blue + ')';
+    var color = 'rgb(' + binaryToDecimal(red) + ',' + binaryToDecimal(green) + ',' + binaryToDecimal(blue) + ')';
 
     // Change background color with the
     // color obtained by rbg function
@@ -38,4 +38,12 @@ document.getElementById('green')
 document.getElementById('blue')
     .addEventListener('input', myColor);
 
-    v
+// Convert binary to decimal
+function binaryToDecimal(binary) {
+    return parseInt(binary, 2);
+}
+
+// Convert decimal to binary
+function decimalToBinary(decimal) {
+    return decimal.toString(2).padStart(8, '0');
+}
