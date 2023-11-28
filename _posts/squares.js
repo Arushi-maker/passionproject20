@@ -14,4 +14,3 @@ window.addEventListener('load', function() {
 
     document.body.appendChild(squareElement);
 });
-
