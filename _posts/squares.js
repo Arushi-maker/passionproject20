@@ -1,5 +1,12 @@
 window.addEventListener('load', function() {
-    var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'purple'];
+    var squareImages = [
+        'C:/Users/venka/OneDrive/Pictures/redsquare.jpg',
+        'C:/Users/venka/OneDrive/Pictures/orangesquare.jpg',
+        'C:/Users/venka/OneDrive/Pictures/yellowsquare.jpg',
+        'C:/Users/venka/OneDrive/Pictures/greensquare.jpg',
+        'C:/Users/venka/OneDrive/Pictures/bluesquare.jpg',
+        'C:/Users/venka/OneDrive/Pictures/purplesquare.jpg'
+    ];
 
     function getRandomColorIndex() {
         return Math.floor(Math.random() * colors.length);
