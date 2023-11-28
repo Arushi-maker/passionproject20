@@ -1,11 +1,11 @@
 window.addEventListener('load', function() {
     var squareImages = [
-        'C:/Users/venka/OneDrive/Pictures/redsquare.jpg',
-        'C:/Users/venka/OneDrive/Pictures/orangesquare.jpg',
-        'C:/Users/venka/OneDrive/Pictures/yellowsquare.jpg',
-        'C:/Users/venka/OneDrive/Pictures/greensquare.jpg',
-        'C:/Users/venka/OneDrive/Pictures/bluesquare.jpg',
-        'C:/Users/venka/OneDrive/Pictures/purplesquare.jpg'
+        'redsquare.jpg',
+        'orangesquare.jpg',
+        'yellowsquare.jpg',
+        'greensquare.jpg',
+        'bluesquare.jpg',
+        'purplesquare.jpg'
     ];
 
     function getRandomColorIndex() {
