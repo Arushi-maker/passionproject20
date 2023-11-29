@@ -8,16 +8,13 @@ window.addEventListener('load', function() {
         'purplesquare.jpg'
     ];
 
-    function getRandomColorIndex() {
-        return Math.floor(Math.random() * colors.length);
+    function getRandomImage() {
+        return squareImages[Math.floor(Math.random() * squareImages.length)];
     }
 
-    var randomIndex = getRandomColorIndex();
-    var selectedColor = colors[randomIndex];
+    var imageElement = document.createElement('img');
+    imageElement.src = getRandomImage();
+    imageElement.alt = 'Square Image';
 
-    var squareElement = document.createElement('div');
-    squareElement.className = 'color-square';
-    squareElement.style.backgroundColor = selectedColor;
-
-    document.body.appendChild(squareElement);
+    document.body.appendChild(imageElement);
 });
