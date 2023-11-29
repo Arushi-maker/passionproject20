@@ -1,5 +1,5 @@
 window.addEventListener('load', function() {
-    var squareImages = [
+    var imagePaths = [
         'redsquare.jpg',
         'orangesquare.jpg',
         'yellowsquare.jpg',
@@ -9,12 +9,12 @@ window.addEventListener('load', function() {
     ];
 
     function getRandomImage() {
-        return squareImages[Math.floor(Math.random() * squareImages.length)];
+        return imagePaths[Math.floor(Math.random() * imagePaths.length)];
     }
 
-    var imageElement = document.createElement('img');
-    imageElement.src = getRandomImage();
-    imageElement.alt = 'Square Image';
+    var imagePaths = document.createElement('img');
+    imagePaths.src = getRandomImage();
+    imagePaths.alt = 'Square Image';
 
-    document.body.appendChild(imageElement);
+    document.body.appendChild(imagePaths);
 });
