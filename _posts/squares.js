@@ -1,23 +1,20 @@
 window.addEventListener('load', function() {
-    var squareImages = [
-        'C:/Users/venka/OneDrive/Pictures/redsquare.jpg',
-        'C:/Users/venka/OneDrive/Pictures/orangesquare.jpg',
-        'C:/Users/venka/OneDrive/Pictures/yellowsquare.jpg',
-        'C:/Users/venka/OneDrive/Pictures/greensquare.jpg',
-        'C:/Users/venka/OneDrive/Pictures/bluesquare.jpg',
-        'C:/Users/venka/OneDrive/Pictures/purplesquare.jpg'
+    var imagePaths = [
+        'redsquare.jpg',
+        'orangesquare.jpg',
+        'yellowsquare.jpg',
+        'greensquare.jpg',
+        'bluesquare.jpg',
+        'purplesquare.jpg'
     ];
 
-    function getRandomColorIndex() {
-        return Math.floor(Math.random() * colors.length);
+    function getRandomImage() {
+        return imagePaths[Math.floor(Math.random() * imagePaths.length)];
     }
 
-    var randomIndex = getRandomColorIndex();
-    var selectedColor = colors[randomIndex];
+    var imagePaths = document.createElement('img');
+    imagePaths.src = getRandomImage();
+    imagePaths.alt = 'Square Image';
 
-    var squareElement = document.createElement('div');
-    squareElement.className = 'color-square';
-    squareElement.style.backgroundColor = selectedColor;
-
-    document.body.appendChild(squareElement);
+    document.body.appendChild(imagePaths);
 });
