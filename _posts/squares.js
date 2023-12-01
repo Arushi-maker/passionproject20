@@ -9,19 +9,20 @@ window.addEventListener('load', function() {
         "purplesquare.jpg"
     ];
 
-    // Get a random index to select a random image
-    const randomIndex = Math.floor(Math.random() * imageSources.length);
-    const selectedImagePath = imageSources[randomIndex];
+    // Loop through the array and create image elements
+    imageSources.forEach(src => {
+        // Create an image element
+        const img = document.createElement("img");
+        
+        // Set the source attribute
+        img.src = src;
+        
+        // Set other attributes if needed
+        img.alt = 'Color Square';
+        img.width = 100;
+        img.height = 100;
 
-    // Create an image element
-    const img = document.createElement("img");
-
-    // Set the source and other attributes
-    img.src = selectedImagePath;
-    img.alt = 'Color Square';
-    img.width = 100;
-    img.height = 100;
-
-    // Append the image to the body
-    document.body.appendChild(img);
+        // Append the image to the body
+        document.body.appendChild(img);
+    });
 });
