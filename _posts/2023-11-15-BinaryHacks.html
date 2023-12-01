@@ -21,9 +21,11 @@
     
     <button onclick="updateBackground()">Update Background</button>
 
-    <div id="background" style="width: 100vw; height: 100vh;"></div>
+    <div id="background" style="width: 100vw; height: 100vh; background-color: rgb(0, 0, 0);">
+        <img src="redsquare.jpg" id="redSquareImage" style="width: 100px; height: 100px;"></img>
+    </div>
 
-    <script>
+   <script>
         function updateBackground() {
             var red = document.getElementById("red").value;
             var green = document.getElementById("green").value;
@@ -36,6 +38,8 @@
             var backgroundColor = `rgb(${red}, ${green}, ${blue})`;
 
             document.getElementById("background").style.backgroundColor = backgroundColor;
+       
+            document.getElementById("redSquareImage").style.display="block";
         }
 
         function decimalToBinary(decimal) {
