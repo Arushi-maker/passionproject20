@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom Background</title>
 
-    <img src="redsquare.jpg" id="redSquare" height="100" width="auto" length="100" style="display: none;"></img>
+    <img src="redsquare.jpg" id="redSquare" height="100" width="auto" style="display: none;"></img>
+    <img src="orangesquare.jpg" id="orangeSquare" height="100" width="auto" style="display: none;"></img>
+    <img src="yellowsquare.jpg" id="yellowSquare" height="100" width="auto" style="display: none;"></img>
+    <img src="greensquare.jpg" id="greenSquare" height="100" width="auto" style="display: none;"></img>
+    <img src="bluesquare.jpg" id="blueSquare" height="100" width="auto" style="display: none;"></img>
+    <img src="purplesquare.jpg" id="purpleSquare" height="100" width="auto" style="display: none;"></img>
+
     <script src="squares.js"></script>
 </head>
 <body>
@@ -23,6 +29,11 @@
 
     <div id="background" style="width: 100vw; height: 100vh; background-color: rgb(255, 255, 255);">
         <img src="redsquare.jpg" id="redSquareImage" style="width: 100px; height: 100px;"></img>
+        <img src="orangesquare.jpg" id="orangeSquareImage" style="width: 100px; height: 100px;"></img>
+        <img src="yellowsquare.jpg" id="yellowSquareImage" style="width: 100px; height: 100px;"></img>
+        <img src="greensquare.jpg" id="greenSquareImage" style="width: 100px; height: 100px;"></img>
+        <img src="bluesquare.jpg" id="blueSquareImage" style="width: 100px; height: 100px;"></img>
+        <img src="purplesquare.jpg" id="purpleSquareImage" style="width: 100px; height: 100px;"></img>
     </div>
 
    <script>
@@ -31,22 +42,33 @@
             var green = document.getElementById("green").value;
             var blue = document.getElementById("blue").value;
 
-            var binaryRed = decimalToBinary(red);
-            var binaryGreen = decimalToBinary(green);
-            var binaryBlue = decimalToBinary(blue);
-
             var backgroundColor = `rgb(${red}, ${green}, ${blue})`;
 
             document.getElementById("background").style.backgroundColor = backgroundColor;
-       
-            document.getElementById("redSquareImage").style.display="block";
-        }
 
-        function decimalToBinary(decimal) {
-            return decimal.toString(2).padStart(8, '0');
+            document.getElementById("redSquareImage").style.display = "none";
+            document.getElementById("orangeSquareImage").style.display = "none";
+            document.getElementById("yellowSquareImage").style.display = "none";
+            document.getElementById("greenSquareImage").style.display = "none";
+            document.getElementById("blueSquareImage").style.display = "none";
+            document.getElementById("purpleSquareImage").style.display = "none";
+
+            if (red > green && red > blue) {
+                document.getElementById("redSquareImage").style.display = "block";
+            } else if (green > red && green > blue) {
+                document.getElementById("greenSquareImage").style.display = "block";
+            } else if (blue > red && blue > green) {
+                document.getElementById("blueSquareImage").style.display = "block";
+            } else if (red === green && red > blue) {
+                document.getElementById("yellowSquareImage").style.display = "block";
+            } else if (red === blue && red > green) {
+                document.getElementById("purpleSquareImage").style.display = "block";
+            } else if (green === blue && green > red) {
+                document.getElementById("cyanSquareImage").style.display = "block";
+            }
         }
     </script>
-    
+
     <script src="rgbslider.js"></script>
 
 </body>
