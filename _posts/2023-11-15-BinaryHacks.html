@@ -28,7 +28,7 @@
     <button onclick="updateBackground()">Update Background</button>
 
     <div id="background" style="width: 100vw; height: 100vh; background-color: rgb(255, 255, 255);">
-  
+ 
         <div id="randomSquareContainer" style="width: 100px; height: 100px;"></div>
     </div>
 
@@ -48,6 +48,7 @@
         }
 
         function showRandomSquareImage() {
+            // Hide all square images
             const squareImageIds = [
                 "redSquareImage",
                 "orangeSquareImage",
