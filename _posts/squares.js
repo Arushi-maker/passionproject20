@@ -1,20 +1,21 @@
 window.addEventListener('load', function() {
     var imagePaths = [
-        'redsquare.jpg',
-        'orangesquare.jpg',
-        'yellowsquare.jpg',
-        'greensquare.jpg',
-        'bluesquare.jpg',
-        'purplesquare.jpg'
+        redsquare.jpg,
+        orangesquare.jpg,
+        yellowsquare.jpg,
+        greensquare.jpg,
+        bluesquare.jpg,
+        purplesquare.jpg
     ];
 
-    function getRandomImage() {
-        return imagePaths[Math.floor(Math.random() * imagePaths.length)];
-    }
+    var randomIndex = Math.floor(Math.random () * imagePaths.length); 
+    var selectedImagePath = imagePaths[randomIndex];
 
-    var imagePaths = document.createElement('img');
-    imagePaths.src = getRandomImage();
-    imagePaths.alt = 'Square Image';
+    var imageElement = document.createElement('img');
+    imageElement.src = selectedImagePath;
+    imageElement.alt = 'Color Square';
+    imageElement.width = 100;
+    imageElement.height = 100;
 
-    document.body.appendChild(imagePaths);
+    document.body.appendChild(imageElement);
 });
