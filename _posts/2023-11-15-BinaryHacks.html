@@ -34,9 +34,10 @@
         <img src="greensquare.jpg" id="greenSquareImage" style="width: 100px; height: 100px;"></img>
         <img src="bluesquare.jpg" id="blueSquareImage" style="width: 100px; height: 100px;"></img>
         <img src="purplesquare.jpg" id="purpleSquareImage" style="width: 100px; height: 100px;"></img>
+        <div id="randomSquareContainer" style="width: 100px; height: 100px;"></div>
     </div>
 
-   <script>
+    <script>
         function updateBackground() {
             var red = document.getElementById("red").value;
             var green = document.getElementById("green").value;
@@ -46,26 +47,27 @@
 
             document.getElementById("background").style.backgroundColor = backgroundColor;
 
-            document.getElementById("redSquareImage").style.display = "none";
-            document.getElementById("orangeSquareImage").style.display = "none";
-            document.getElementById("yellowSquareImage").style.display = "none";
-            document.getElementById("greenSquareImage").style.display = "none";
-            document.getElementById("blueSquareImage").style.display = "none";
-            document.getElementById("purpleSquareImage").style.display = "none";
+            showRandomSquareImage();
+        }
 
-            if (red > green && red > blue) {
-                document.getElementById("redSquareImage").style.display = "block";
-            } else if (green > red && green > blue) {
-                document.getElementById("greenSquareImage").style.display = "block";
-            } else if (blue > red && blue > green) {
-                document.getElementById("blueSquareImage").style.display = "block";
-            } else if (red === green && red > blue) {
-                document.getElementById("yellowSquareImage").style.display = "block";
-            } else if (red === blue && red > green) {
-                document.getElementById("purpleSquareImage").style.display = "block";
-            } else if (green === blue && green > red) {
-                document.getElementById("cyanSquareImage").style.display = "block";
-            }
+        function showRandomSquareImage() {
+            const squareImageIds = [
+                "redSquareImage",
+                "orangeSquareImage",
+                "yellowSquareImage",
+                "greenSquareImage",
+                "blueSquareImage",
+                "purpleSquareImage"
+            ];
+
+            const randomIndex = Math.floor(Math.random() * squareImageIds.length);
+            const selectedSquareImageId = squareImageIds[randomIndex];
+
+            document.getElementById("randomSquareContainer").innerHTML = "";
+
+            const selectedSquareImage = document.getElementById(selectedSquareImageId).cloneNode(true);
+            selectedSquareImage.style.display = "block";
+            document.getElementById("randomSquareContainer").appendChild(selectedSquareImage);
         }
     </script>
 
