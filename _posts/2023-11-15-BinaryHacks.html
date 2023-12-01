@@ -28,11 +28,13 @@
     <button onclick="updateBackground()">Update Background</button>
 
     <div id="background" style="width: 100vw; height: 100vh; background-color: rgb(255, 255, 255);">
-   
+  
         <div id="randomSquareContainer" style="width: 100px; height: 100px;"></div>
     </div>
 
     <script>
+        let selectedSquareImageId = getRandomSquareImageId();
+
         function updateBackground() {
             var red = document.getElementById("red").value;
             var green = document.getElementById("green").value;
@@ -55,9 +57,6 @@
                 "purpleSquareImage"
             ];
 
-            const randomIndex = Math.floor(Math.random() * squareImageIds.length);
-            const selectedSquareImageId = squareImageIds[randomIndex];
-
             squareImageIds.forEach(id => {
                 document.getElementById(id).style.display = "none";
             });
@@ -67,6 +66,11 @@
             const selectedSquareImage = document.getElementById(selectedSquareImageId).cloneNode(true);
             selectedSquareImage.style.display = "block";
             document.getElementById("randomSquareContainer").appendChild(selectedSquareImage);
+        }
+
+        function getRandomSquareImageId() {
+            const randomIndex = Math.floor(Math.random() * squareImageIds.length);
+            return squareImageIds[randomIndex];
         }
     </script>
 
