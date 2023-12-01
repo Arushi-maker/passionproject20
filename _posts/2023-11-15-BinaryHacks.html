@@ -5,16 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom Background</title>
 
-    <style>
-        .squareImage {
-            width: 100px;
-            height: 100px;
-        }
-    </style>
-
+    <img src="redsquare.jpg" id="redSquare" style="display: none;"></img>
+    
     <script src="squares.js"></script>
 </head>
-<body onload="initializePage();">
+<body>
 
     <label for="red">Red:</label>
     <input type="number" id="red" min="0" max="255" value="0">
@@ -27,60 +22,28 @@
     
     <button onclick="updateBackground()">Update Background</button>
 
-    <div id="background" style="width: 100vw; height: 100vh; background-color: rgb(255, 255, 255);">
-     
-        <div id="randomSquareContainer"></div>
-    </div>
+    <div id="background" style="width: 100vw; height: 100vh;"></div>
 
     <script>
-        let selectedSquareImageId;
-        const squareImageIds = [
-            "redSquareImage",
-            "orangeSquareImage",
-            "yellowSquareImage",
-            "greenSquareImage",
-            "blueSquareImage",
-            "purpleSquareImage"
-        ];
-
-        function initializePage() {
-            
-            selectedSquareImageId = getRandomSquareImageId();
-            showRandomSquareImage();
-        }
-
         function updateBackground() {
             var red = document.getElementById("red").value;
             var green = document.getElementById("green").value;
             var blue = document.getElementById("blue").value;
+
+            var binaryRed = decimalToBinary(red);
+            var binaryGreen = decimalToBinary(green);
+            var binaryBlue = decimalToBinary(blue);
 
             var backgroundColor = `rgb(${red}, ${green}, ${blue})`;
 
             document.getElementById("background").style.backgroundColor = backgroundColor;
         }
 
-        function showRandomSquareImage() {
-            
-            document.getElementById("randomSquareContainer").innerHTML = "";
-
-            const selectedSquareImage = document.getElementById(selectedSquareImageId).cloneNode(true);
-            selectedSquareImage.classList.add("squareImage"); 
-            document.getElementById("randomSquareContainer").appendChild(selectedSquareImage);
-        }
-
-        function getRandomSquareImageId() {
-            const randomIndex = Math.floor(Math.random() * squareImageIds.length);
-            return squareImageIds[randomIndex];
+        function decimalToBinary(decimal) {
+            return decimal.toString(2).padStart(8, '0');
         }
     </script>
-
-    <img src="redsquare.jpg" id="redSquareImage" style="display: none;">
-    <img src="orangesquare.jpg" id="orangeSquareImage" style="display: none;">
-    <img src="yellowsquare.jpg" id="yellowSquareImage" style="display: none;">
-    <img src="greensquare.jpg" id="greenSquareImage" style="display: none;">
-    <img src="bluesquare.jpg" id="blueSquareImage" style="display: none;">
-    <img src="purplesquare.jpg" id="purpleSquareImage" style="display: none;">
-
+    
     <script src="rgbslider.js"></script>
 
 </body>
