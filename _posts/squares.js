@@ -1,21 +1,27 @@
 window.addEventListener('load', function() {
-    var imagePaths = [
-        redsquare.jpg,
-        orangesquare.jpg,
-        yellowsquare.jpg,
-        greensquare.jpg,
-        bluesquare.jpg,
-        purplesquare.jpg
+    // Create an array of image sources
+    const imageSources = [
+        "redsquare.jpg",
+        "orangesquare.jpg",
+        "yellowsquare.jpg",
+        "greensquare.jpg",
+        "bluesquare.jpg",
+        "purplesquare.jpg"
     ];
 
-    var randomIndex = Math.floor(Math.random () * imagePaths.length); 
-    var selectedImagePath = imagePaths[randomIndex];
+    // Get a random index to select a random image
+    const randomIndex = Math.floor(Math.random() * imageSources.length);
+    const selectedImagePath = imageSources[randomIndex];
 
-    var imageElement = document.createElement('img');
-    imageElement.src = selectedImagePath;
-    imageElement.alt = 'Color Square';
-    imageElement.width = 100;
-    imageElement.height = 100;
+    // Create an image element
+    const img = document.createElement("img");
 
-    document.body.appendChild(imageElement);
+    // Set the source and other attributes
+    img.src = selectedImagePath;
+    img.alt = 'Color Square';
+    img.width = 100;
+    img.height = 100;
+
+    // Append the image to the body
+    document.body.appendChild(img);
 });
