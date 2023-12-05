@@ -4,8 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom Background</title>
+
+    <img src="redsquare.jpg" id="redSquare" width="auto" height="100" length="100"></img>
+    <img src="orangesquare.jpg" id="orangeSquare" width="auto" height="100" length="100"></img>
+    <img src="yellowsquare.jpg" id="yellowSquare" width="auto" height="100" length="100"></img>
+    <img src="greensquare.jpg" id="greenSquare" width="auto" height="100" length="100"></img>
+    <img src="bluesquare.jpg" id="blueSquare" width="auto" height="100" length="100"></img>
+    <img src="purplesquare.jpg" id="purpleSquare" width="auto" height="100" length="100"></img>
 </head>
 <body>
+
+    <h1> Color Game Instructions </h1>
+    <p>
+        Welcome to the color game! <br>
+        This game engages you to try to create a color using the RGB values to match each of the color squares you see on top!
+        Fill in the fields for each RGB to create a new color!
+    </p>
 
     <label for="red">Red:</label>
     <input type="number" id="red" min="0" max="255" value="0">
@@ -39,7 +53,7 @@
             return decimal.toString(2).padStart(8, '0');
         }
     </script>
-
+    
     <script src="squares.js"></script>
     <script src="rgbslider.js"></script>
 
