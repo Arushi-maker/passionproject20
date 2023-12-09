@@ -1,16 +1,52 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
+const objects = [
+    {x: 100, y: 100, width: 50, height: 50, color: "#FF0000", isTarget: true},
+    {x: 200, y: 200, width: 50, height: 50, color: "#00FF00", isTarget: false},
+    {x: 300, y: 300, width: 50, height: 50, color: "#0000FF", isTarget: false},
+
+];
+
+let score = 0;
+let timeLeft = 120;
+let isGameRunning = true;
+
 function draw() {
-
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "#FF0000";
-    ctx.fillRect(50, 50, 50, 50);
+
+    if (isGameRunning) {
+        drawObjects();
+        drawScore();
+        drawTimer();
+    } else {
+        drawGameOver();
+    }
 }
 
-function gameLoop() {
-    draw();
-    requestAnimationFrame(gameLoop);
+function drawObjects() {
+    for (const object of objects) {
+        ctx.fillStyle = object.color
+        ctx.fillRect(object.x, object.y, object,width, object.height);
+    }
 }
 
-gameLoop();
+function drawScore() {
+    ctx.fillStyle = "#000";
+    ctx.font = "20px Arial";
+    ctx.fillText('Score: ${score}', 10, 30);
+}
+
+function drawTimer() {
+    ctx.fillStyle = "#000";
+    ctx.font = "40px Arial";
+    ctx.fillText('Time: ${timeLeft}s', canvas.width - 120, 30);
+}
+
+function drawGameOver() {
+    ctx.fillStyle = "#000";
+    ctx.font = "40px Arial";
+    ctx.fillText("Game Over", canvas.width / 2 - 100, canvas.height / 2 - 20);
+    ctx.font = "20px Arial";
+    ctx.fillText('Your score: ${score}', canvas.width/ 2 - 60, canvas.height / 2 + 20);
+}
