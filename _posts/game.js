@@ -77,3 +77,32 @@ function handleClick(event) {
         }
     }
 }
+
+function resetObjects() {
+    for (const object of objects) {
+      object.x = Math.random() * (canvas.width - object.width);
+      object.y = Math.random() * (canvas.height - object.height);
+    }
+}
+
+function updateTimer() {
+  if (timeLeft > 0) {
+    timeLeft--;
+  } else {
+    isGameRunning = false;
+  }
+}
+
+function gameLoop() {
+    if (isGameRunning) {
+        updateTimer();
+        draw();
+        requestAnimationFrame(gameLoop);
+    }
+}
+
+canvas.addEventListener("click", handleClick);
+
+
+resetObjects();
+gameLoop();
