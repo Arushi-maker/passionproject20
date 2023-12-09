@@ -50,3 +50,30 @@ function drawGameOver() {
     ctx.font = "20px Arial";
     ctx.fillText('Your score: ${score}', canvas.width/ 2 - 60, canvas.height / 2 + 20);
 }
+
+function handleClick(event) {
+    if (!isGameRunning) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+
+    for (const object of objects) {
+        if (
+            mouseX >= object.x &&
+            mouseX <= object.x + object.width &&
+            mouseY >= object.y &&
+            mouseY <= object.y + object.height
+        ) {
+            if (object.isTarget) {
+              score++;
+            } else {
+
+              score--;  
+            }
+
+            resetObjects();
+            break;
+        }
+    }
+}
