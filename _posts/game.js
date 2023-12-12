@@ -10,6 +10,7 @@ const objects = [
 let score = 0;
 let timeLeft = 120;
 let isGameRunning = true;
+let lastTimestamp;
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
