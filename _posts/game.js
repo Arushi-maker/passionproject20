@@ -101,6 +101,7 @@ function updateTimer(timestamp) {
     requestAnimationFrame(updateTimer);
   } else {
     isGameRunning = false;
+    draw(); // Call draw function to display the game over screen
   }
 }
 
