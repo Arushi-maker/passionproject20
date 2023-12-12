@@ -14,9 +14,9 @@ for (let i = 0; i < 30; i++) {
 }
 
 const objects = [
-  { x: 100, y: 100, width: 50, height: 50, color: "#FF0000", isTarget: true, speed: 10 },
-  { x: 200, y: 200, width: 50, height: 50, color: "#00FF00", isTarget: false, speed: 10 },
-  { x: 300, y: 300, width: 50, height: 50, color: "#0000FF", isTarget: false, speed: 10 },
+  { x: 100, y: 100, width: 50, height: 50, color: "#FF0000", isTarget: true, speed: 5 },
+  { x: 200, y: 200, width: 50, height: 50, color: "#00FF00", isTarget: false, speed: 5 },
+  { x: 300, y: 300, width: 50, height: 50, color: "#0000FF", isTarget: false, speed: 5 },
 ];
 
 let score = 0;
@@ -143,7 +143,7 @@ function updateTimer(timestamp) {
       const elapsedMilliseconds = timestamp - lastTimestamp;
       const elapsedSeconds = elapsedMilliseconds / 1000;
 
-      timeLeft -= elapsedSeconds * 10;
+      timeLeft -= elapsedSeconds * 10; 
     }
 
     lastTimestamp = timestamp;
@@ -164,5 +164,7 @@ function gameLoop(timestamp) {
 
 canvas.addEventListener("click", handleClick);
 
-resetObjects();
-gameLoop();
+setTimeout(() => {
+  resetObjects();
+  gameLoop();
+}, 1000);
