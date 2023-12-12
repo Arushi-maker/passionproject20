@@ -8,7 +8,7 @@ const objects = [
 ];
 
 let score = 0;
-let timeLeft = 120;
+let timeLeft = 180;
 let isGameRunning = true;
 
 function draw() {
