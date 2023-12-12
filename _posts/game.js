@@ -22,7 +22,7 @@ const objects = [
 let score = 0;
 let timeLeft = 120;
 let isGameRunning = true;
-let lastTimestamp;
+let lastTimestamp = null;
 
 function getRandomColor() {
   const letters = "0123456789ABCDEF";
@@ -68,11 +68,9 @@ function drawObjects() {
     ctx.fillStyle = object.color;
     ctx.fillRect(object.x, object.y, object.width, object.height);
 
-    // Move squares
     object.x += object.speed;
     object.y += object.speed;
 
-    // Bounce off the walls
     if (object.x < 0 || object.x + object.width > canvas.width) {
       object.speed = -object.speed;
     }
@@ -141,14 +139,12 @@ function resetObjects() {
 
 function updateTimer(timestamp) {
   if (timeLeft > 0) {
-    if (!lastTimestamp) {
-      lastTimestamp = timestamp;
+    if (lastTimestamp !== null) {
+      const elapsedMilliseconds = timestamp - lastTimestamp;
+      const elapsedSeconds = elapsedMilliseconds / 1000;
+
+      timeLeft -= elapsedSeconds * 10;
     }
-
-    const elapsedMilliseconds = timestamp - lastTimestamp;
-    const elapsedSeconds = elapsedMilliseconds / 1000;
-
-    timeLeft -= elapsedSeconds * 10; 
 
     lastTimestamp = timestamp;
     requestAnimationFrame(updateTimer);
