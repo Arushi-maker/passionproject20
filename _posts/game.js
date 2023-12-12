@@ -1,10 +1,22 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
+const circles = [];
+for (let i = 0; i < 30; i++) {
+  circles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    radius: Math.random() * 20 + 5,
+    speedX: Math.random() * 6 - 3,
+    speedY: Math.random() * 6 - 3,
+    color: getRandomColor(),
+  });
+}
+
 const objects = [
-  { x: 100, y: 100, width: 50, height: 50, color: "#FF0000", isTarget: true },
-  { x: 200, y: 200, width: 50, height: 50, color: "#00FF00", isTarget: false },
-  { x: 300, y: 300, width: 50, height: 50, color: "#0000FF", isTarget: false },
+  { x: 100, y: 100, width: 50, height: 50, color: "#FF0000", isTarget: true, speed: 10 },
+  { x: 200, y: 200, width: 50, height: 50, color: "#00FF00", isTarget: false, speed: 10 },
+  { x: 300, y: 300, width: 50, height: 50, color: "#0000FF", isTarget: false, speed: 10 },
 ];
 
 let score = 0;
@@ -12,8 +24,35 @@ let timeLeft = 120;
 let isGameRunning = true;
 let lastTimestamp;
 
+function getRandomColor() {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  for (const circle of circles) {
+    ctx.beginPath();
+    ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
+    ctx.fillStyle = circle.color;
+    ctx.fill();
+
+    circle.x += circle.speedX;
+    circle.y += circle.speedY;
+
+    if (circle.x - circle.radius < 0 || circle.x + circle.radius > canvas.width) {
+      circle.speedX = -circle.speedX;
+    }
+
+    if (circle.y - circle.radius < 0 || circle.y + circle.radius > canvas.height) {
+      circle.speedY = -circle.speedY;
+    }
+  }
 
   if (isGameRunning) {
     drawObjects();
@@ -28,6 +67,19 @@ function drawObjects() {
   for (const object of objects) {
     ctx.fillStyle = object.color;
     ctx.fillRect(object.x, object.y, object.width, object.height);
+
+    // Move squares
+    object.x += object.speed;
+    object.y += object.speed;
+
+    // Bounce off the walls
+    if (object.x < 0 || object.x + object.width > canvas.width) {
+      object.speed = -object.speed;
+    }
+
+    if (object.y < 0 || object.y + object.height > canvas.height) {
+      object.speed = -object.speed;
+    }
   }
 }
 
@@ -40,7 +92,7 @@ function drawScore() {
 function drawTimer() {
   ctx.fillStyle = "#000";
   ctx.font = "40px Arial";
-  const timerText = `Time: ${timeLeft}s`;
+  const timerText = `Time: ${timeLeft.toFixed(1)}s`;
   const timerWidth = ctx.measureText(timerText).width;
   ctx.fillText(timerText, canvas.width - timerWidth - 10, 30);
 }
@@ -83,6 +135,7 @@ function resetObjects() {
   for (const object of objects) {
     object.x = Math.random() * (canvas.width - object.width);
     object.y = Math.random() * (canvas.height - object.height);
+    object.speed = Math.random() * 6 - 3;
   }
 }
 
@@ -93,13 +146,11 @@ function updateTimer(timestamp) {
     }
 
     const elapsedMilliseconds = timestamp - lastTimestamp;
-    const elapsedSeconds = Math.floor(elapsedMilliseconds / 1000);
+    const elapsedSeconds = elapsedMilliseconds / 1000;
 
-    if (elapsedSeconds >= 1) { 
-      timeLeft -= elapsedSeconds;
-      lastTimestamp = timestamp;
-    }
+    timeLeft -= elapsedSeconds * 10; 
 
+    lastTimestamp = timestamp;
     requestAnimationFrame(updateTimer);
   } else {
     isGameRunning = false;
