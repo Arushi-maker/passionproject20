@@ -83,17 +83,29 @@ function resetObjects() {
   }
 }
 
-function updateTimer() {
+function updateTimer(timestamp) {
   if (timeLeft > 0) {
-    timeLeft--;
+    if (!lastTimestamp) {
+      lastTimestamp = timestamp;
+    }
+
+    const elapsedMilliseconds = timestamp - lastTimestamp;
+    const elapsedSeconds = Math.floor(elapsedMilliseconds / 1000);
+
+    if (elapsedSeconds >= 1) { 
+      timeLeft -= elapsedSeconds;
+      lastTimestamp = timestamp;
+    }
+
+    requestAnimationFrame(updateTimer);
   } else {
     isGameRunning = false;
   }
 }
 
-function gameLoop() {
+function gameLoop(timestamp) {
   if (isGameRunning) {
-    updateTimer();
+    updateTimer(timestamp);
     draw();
     requestAnimationFrame(gameLoop);
   }
