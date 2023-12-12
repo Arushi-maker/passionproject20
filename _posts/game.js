@@ -92,7 +92,7 @@ function drawTimer() {
   ctx.font = "40px Arial";
   const timerText = `Time: ${timeLeft.toFixed(1)}s`;
   const timerWidth = ctx.measureText(timerText).width;
-  ctx.fillText(timerText, canvas.width - timerWidth - 10, 30);
+  ctx.fillText(timerText, canvas.width - timerWidth - 10, 30); 
 }
 
 function drawGameOver() {
