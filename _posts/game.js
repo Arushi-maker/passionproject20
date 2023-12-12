@@ -40,7 +40,9 @@ function drawScore() {
 function drawTimer() {
   ctx.fillStyle = "#000";
   ctx.font = "40px Arial";
-  ctx.fillText(`Time: ${timeLeft}s`, canvas.width - 120, 30);
+  const timerText = `Time: ${timeLeft}s`;
+  const timerWidth = ctx.measureText(timerText).width;
+  ctx.fillText(timerText, canvas.width - timerWidth - 10, 30);
 }
 
 function drawGameOver() {
@@ -101,7 +103,7 @@ function updateTimer(timestamp) {
     requestAnimationFrame(updateTimer);
   } else {
     isGameRunning = false;
-    draw(); 
+    draw();
   }
 }
 
