@@ -9,18 +9,15 @@ let isGameRunning = false;
 let lastTimestamp = null;
 
 function initGame() {
- 
-  circles = [];
-  for (let i = 0; i < 30; i++) {
-    circles.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      radius: Math.random() * 20 + 5,
-      speedX: Math.random() * 6 - 3,
-      speedY: Math.random() * 6 - 3,
-      color: getRandomColor(),
-    });
-  }
+
+  circles = Array.from({ length: 30 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    radius: Math.random() * 20 + 5,
+    speedX: Math.random() * 6 - 3,
+    speedY: Math.random() * 6 - 3,
+    color: getRandomColor(),
+  }));
 
   objects = [
     { x: 100, y: 100, width: 50, height: 50, color: "#FF0000", isTarget: true, speed: 5 },
@@ -78,11 +75,9 @@ function drawObjects() {
     ctx.fillStyle = object.color;
     ctx.fillRect(object.x, object.y, object.width, object.height);
 
-    // Move squares
     object.x += object.speed;
     object.y += object.speed;
 
-    // Bounce off the walls
     if (object.x < 0 || object.x + object.width > canvas.width) {
       object.speed = -object.speed;
     }
@@ -155,14 +150,14 @@ function updateTimer(timestamp) {
       const elapsedMilliseconds = timestamp - lastTimestamp;
       const elapsedSeconds = elapsedMilliseconds / 1000;
 
-      timeLeft -= elapsedSeconds * 10;
+      timeLeft -= elapsedSeconds * 10; 
     }
 
     lastTimestamp = timestamp;
     requestAnimationFrame(updateTimer);
   } else {
     isGameRunning = false;
-    draw(); 
+    draw();
   }
 }
 
