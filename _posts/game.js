@@ -5,7 +5,6 @@ let objects = [];
 let score = 0;
 let timeLeft = 120;
 let isGameRunning = false;
-let lastTimestamp = null;
 
 function initGame() {
   // Initialize game objects
@@ -18,7 +17,6 @@ function initGame() {
   score = 0;
   timeLeft = 120;
   isGameRunning = true;
-  lastTimestamp = null;
 }
 
 function draw() {
@@ -122,6 +120,6 @@ function gameLoop(timestamp) {
 
 canvas.addEventListener("click", handleClick);
 
-// Start the game loop without delay
+// Start the game by initializing it and calling the game loop
 initGame();
 gameLoop();
