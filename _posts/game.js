@@ -157,7 +157,7 @@ function updateTimer(timestamp) {
     requestAnimationFrame(updateTimer);
   } else {
     isGameRunning = false;
-    draw();
+    draw(); 
   }
 }
 
@@ -171,7 +171,5 @@ function gameLoop(timestamp) {
 
 canvas.addEventListener("click", handleClick);
 
-setTimeout(() => {
-  initGame();
-  gameLoop();
-}, 1000);
+initGame();
+gameLoop();
