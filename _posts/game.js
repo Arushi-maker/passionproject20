@@ -14,8 +14,8 @@ function initGame() {
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
     radius: Math.random() * 20 + 5,
-    speedX: Math.random() * 8 - 4,
-    speedY: Math.random() * 8 - 4,
+    speedX: Math.random() * 10 - 5,
+    speedY: Math.random() * 10 - 5,
     color: getRandomColor(),
   }));
 
@@ -88,7 +88,8 @@ function drawTimer() {
   ctx.font = "40px Arial";
   const timerText = `Time: ${timeLeft.toFixed(1)}s`;
   const timerWidth = ctx.measureText(timerText).width;
-  ctx.fillText(timerText, canvas.width - timerWidth - 10, 30);
+  ctx.fillText(timerText, canvas.width - timerWidth - 10, 30); 
+}
 
 function drawGameOver() {
   ctx.fillStyle = "#000";
@@ -144,7 +145,7 @@ function updateTimer(timestamp) {
     requestAnimationFrame(updateTimer);
   } else {
     isGameRunning = false;
-    draw();
+    draw(); 
   }
 }
 
@@ -160,5 +161,3 @@ canvas.addEventListener("click", handleClick);
 
 initGame();
 gameLoop();
-
-}
