@@ -1,7 +1,6 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-let circles = [];
 let objects = [];
 let score = 0;
 let timeLeft = 120;
@@ -9,16 +8,6 @@ let isGameRunning = false;
 let lastTimestamp = null;
 
 function initGame() {
-  // Initialize background circles
-  circles = Array.from({ length: 30 }, () => ({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    radius: Math.random() * 20 + 5,
-    speedX: Math.random() * 4 - 2, // Adjusted speed for circles
-    speedY: Math.random() * 4 - 2,
-    color: getRandomColor(),
-  }));
-
   // Initialize game objects
   objects = [
     { x: 100, y: 100, width: 50, height: 50, color: "#FF0000", isTarget: true },
@@ -32,38 +21,8 @@ function initGame() {
   lastTimestamp = null;
 }
 
-function getRandomColor() {
-  const letters = "0123456789ABCDEF";
-  let color = "#";
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
-
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  // Draw background circles
-  for (const circle of circles) {
-    ctx.beginPath();
-    ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
-    ctx.fillStyle = circle.color;
-    ctx.fill();
-
-    // Move circles
-    circle.x += circle.speedX;
-    circle.y += circle.speedY;
-
-    // Bounce off the walls
-    if (circle.x - circle.radius < 0 || circle.x + circle.radius > canvas.width) {
-      circle.speedX = -circle.speedX;
-    }
-
-    if (circle.y - circle.radius < 0 || circle.y + circle.radius > canvas.height) {
-      circle.speedY = -circle.speedY;
-    }
-  }
 
   if (isGameRunning) {
     drawObjects();
