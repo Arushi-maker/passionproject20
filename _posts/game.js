@@ -14,15 +14,15 @@ function initGame() {
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
     radius: Math.random() * 20 + 5,
-    speedX: Math.random() * 6 - 3,
-    speedY: Math.random() * 6 - 3,
+    speedX: Math.random() * 8 - 4,
+    speedY: Math.random() * 8 - 4,
     color: getRandomColor(),
   }));
 
   objects = [
-    { x: 100, y: 100, width: 50, height: 50, color: "#FF0000", isTarget: true, speed: 5 },
-    { x: 200, y: 200, width: 50, height: 50, color: "#00FF00", isTarget: false, speed: 5 },
-    { x: 300, y: 300, width: 50, height: 50, color: "#0000FF", isTarget: false, speed: 5 },
+    { x: 100, y: 100, width: 50, height: 50, color: "#FF0000", isTarget: true },
+    { x: 200, y: 200, width: 50, height: 50, color: "#00FF00", isTarget: false },
+    { x: 300, y: 300, width: 50, height: 50, color: "#0000FF", isTarget: false },
   ];
 
   score = 0;
@@ -74,17 +74,6 @@ function drawObjects() {
   for (const object of objects) {
     ctx.fillStyle = object.color;
     ctx.fillRect(object.x, object.y, object.width, object.height);
-
-    object.x += object.speed;
-    object.y += object.speed;
-
-    if (object.x < 0 || object.x + object.width > canvas.width) {
-      object.speed = -object.speed;
-    }
-
-    if (object.y < 0 || object.y + object.height > canvas.height) {
-      object.speed = -object.speed;
-    }
   }
 }
 
@@ -99,8 +88,7 @@ function drawTimer() {
   ctx.font = "40px Arial";
   const timerText = `Time: ${timeLeft.toFixed(1)}s`;
   const timerWidth = ctx.measureText(timerText).width;
-  ctx.fillText(timerText, canvas.width - timerWidth - 10, 30); 
-}
+  ctx.fillText(timerText, canvas.width - timerWidth - 10, 30);
 
 function drawGameOver() {
   ctx.fillStyle = "#000";
@@ -140,7 +128,6 @@ function resetObjects() {
   for (const object of objects) {
     object.x = Math.random() * (canvas.width - object.width);
     object.y = Math.random() * (canvas.height - object.height);
-    object.speed = Math.random() * 6 - 3;
   }
 }
 
@@ -150,14 +137,14 @@ function updateTimer(timestamp) {
       const elapsedMilliseconds = timestamp - lastTimestamp;
       const elapsedSeconds = elapsedMilliseconds / 1000;
 
-      timeLeft -= elapsedSeconds * 10; 
+      timeLeft -= elapsedSeconds * 10;
     }
 
     lastTimestamp = timestamp;
     requestAnimationFrame(updateTimer);
   } else {
     isGameRunning = false;
-    draw(); 
+    draw();
   }
 }
 
@@ -173,3 +160,5 @@ canvas.addEventListener("click", handleClick);
 
 initGame();
 gameLoop();
+
+}
