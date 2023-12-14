@@ -96,7 +96,7 @@ function resetObjects() {
 }
 
 function updateTimer(timestamp) {
-  if (timeLeft > 0) {
+  if (timeLeft > 0 && isGameRunning) {
     if (lastTimestamp !== null) {
       const elapsedMilliseconds = timestamp - lastTimestamp;
       const elapsedSeconds = elapsedMilliseconds / 1000;
@@ -116,6 +116,12 @@ function gameLoop(timestamp) {
   if (isGameRunning) {
     updateTimer(timestamp);
     draw();
+    requestAnimationFrame(gameLoop);
+  }
+  // Additional check to restart the game after game over
+  else {
+    initGame();
+    isGameRunning = true;
     requestAnimationFrame(gameLoop);
   }
 }
