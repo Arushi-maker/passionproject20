@@ -6,6 +6,7 @@ let score = 0;
 let timeLeft = 120;
 let isGameRunning = false;
 let lastTimestamp = null;
+let lastMoveTimestamp = 0; // Added variable for object movement
 
 function initGame() {
   // Initialize game objects
@@ -19,6 +20,7 @@ function initGame() {
   timeLeft = 120;
   isGameRunning = true;
   lastTimestamp = null;
+  lastMoveTimestamp = 0; // Initialize lastMoveTimestamp
 }
 
 function draw() {
@@ -114,6 +116,12 @@ function updateTimer(timestamp) {
 
 function gameLoop(timestamp) {
   if (isGameRunning) {
+    // Move objects every half second
+    if (timestamp - lastMoveTimestamp > 500) {
+      moveObjects();
+      lastMoveTimestamp = timestamp;
+    }
+
     updateTimer(timestamp);
     draw();
     requestAnimationFrame(gameLoop);
@@ -123,6 +131,13 @@ function gameLoop(timestamp) {
     initGame();
     isGameRunning = true;
     requestAnimationFrame(gameLoop);
+  }
+}
+
+function moveObjects() {
+  for (const object of objects) {
+    object.x = Math.random() * (canvas.width - object.width);
+    object.y = Math.random() * (canvas.height - object.height);
   }
 }
 
