@@ -6,7 +6,7 @@ let score = 0;
 let timeLeft = 120;
 let isGameRunning = false;
 let lastTimestamp = null;
-let lastMoveTimestamp = 0; // Added variable for object movement
+let lastMoveTimestamp = 0;
 
 function initGame() {
   // Initialize game objects
@@ -20,7 +20,7 @@ function initGame() {
   timeLeft = 120;
   isGameRunning = true;
   lastTimestamp = null;
-  lastMoveTimestamp = 0; // Initialize lastMoveTimestamp
+  lastMoveTimestamp = 0;
 }
 
 function draw() {
@@ -53,7 +53,7 @@ function drawTimer() {
   ctx.font = "40px Arial";
   const timerText = `Time: ${timeLeft.toFixed(1)}s`;
   const timerWidth = ctx.measureText(timerText).width;
-  ctx.fillText(timerText, canvas.width - timerWidth - 10, 30); // Adjusted the position
+  ctx.fillText(timerText, canvas.width - timerWidth - 10, 30);
 }
 
 function drawGameOver() {
@@ -110,14 +110,14 @@ function updateTimer(timestamp) {
     requestAnimationFrame(updateTimer);
   } else {
     isGameRunning = false;
-    draw(); // Call draw function to display the game over screen
+    draw();
   }
 }
 
 function gameLoop(timestamp) {
   if (isGameRunning) {
-    // Move objects every half second
-    if (timestamp - lastMoveTimestamp > 500) {
+    // Move objects every three seconds
+    if (timestamp - lastMoveTimestamp > 3000) {
       moveObjects();
       lastMoveTimestamp = timestamp;
     }
@@ -125,9 +125,7 @@ function gameLoop(timestamp) {
     updateTimer(timestamp);
     draw();
     requestAnimationFrame(gameLoop);
-  }
-  // Additional check to restart the game after game over
-  else {
+  } else {
     initGame();
     isGameRunning = true;
     requestAnimationFrame(gameLoop);
@@ -143,6 +141,5 @@ function moveObjects() {
 
 canvas.addEventListener("click", handleClick);
 
-// Start the game by initializing it and calling the game loop
 initGame();
 gameLoop();
