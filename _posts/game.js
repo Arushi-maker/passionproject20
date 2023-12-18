@@ -181,7 +181,7 @@ function resetObjects() {
   }
 }
 
-function updateTimer() {
+function updateTimer(timestamp) {
   const currentTimestamp = performance.now();
   const elapsedMilliseconds = currentTimestamp - lastTimestamp;
   const elapsedSeconds = elapsedMilliseconds / 1000;
@@ -197,7 +197,7 @@ function updateTimer() {
 
 function gameLoop(timestamp) {
   if (isGameRunning) {
-    updateTimer();
+    updateTimer(timestamp);
     draw();
     requestAnimationFrame(gameLoop);
   }
@@ -205,5 +205,5 @@ function gameLoop(timestamp) {
 
 canvas.addEventListener("click", handleClick);
 
-// Start the game by initializing it
+// Initialize the game
 initGame();
