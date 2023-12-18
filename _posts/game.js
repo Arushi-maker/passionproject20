@@ -14,6 +14,9 @@ function initGame() {
     { x: 100, y: 100, width: 50, height: 50, color: "#FF0000", isTarget: true },
     { x: 200, y: 200, width: 50, height: 50, color: "#00FF00", isTarget: false },
     { x: 300, y: 300, width: 50, height: 50, color: "#0000FF", isTarget: false },
+    { x: 400, y: 400, width: 50, height: 50, color: "#FFA500", isTarget: true }, // Orange square
+    { x: 500, y: 500, width: 50, height: 50, color: "#FFFF00", isTarget: false }, // Yellow square
+    { x: 600, y: 200, width: 50, height: 50, color: "#800080", isTarget: false }, // Purple square
   ];
 
   score = 0;
@@ -118,9 +121,8 @@ function handleStartClick(event) {
     mouseY >= startButtonY &&
     mouseY <= startButtonY + startButtonHeight
   ) {
-    canvas.removeEventListener("click", handleStartClick);
     isGameRunning = true;
-    lastTimestamp = performance.now();
+    canvas.removeEventListener("click", handleStartClick);
     requestAnimationFrame(gameLoop);
   }
 }
@@ -141,8 +143,8 @@ function handleRestartClick(event) {
     mouseY >= restartButtonY &&
     mouseY <= restartButtonY + restartButtonHeight
   ) {
-    canvas.removeEventListener("click", handleRestartClick);
     initGame();
+    requestAnimationFrame(gameLoop);
   }
 }
 
@@ -162,10 +164,11 @@ function handleClick(event) {
     ) {
       if (object.isTarget) {
         score++;
-        resetObjects();
       } else {
         score--;
       }
+
+      resetObjects();
       break;
     }
   }
@@ -179,18 +182,16 @@ function resetObjects() {
 }
 
 function updateTimer() {
-  if (timeLeft > 0 && isGameRunning) {
-    const currentTimestamp = performance.now();
-    const elapsedMilliseconds = currentTimestamp - lastTimestamp;
-    const elapsedSeconds = elapsedMilliseconds / 1000;
+  const currentTimestamp = performance.now();
+  const elapsedMilliseconds = currentTimestamp - lastTimestamp;
+  const elapsedSeconds = elapsedMilliseconds / 1000;
 
-    timeLeft -= elapsedSeconds;
-    lastTimestamp = currentTimestamp;
+  timeLeft -= elapsedSeconds;
+  lastTimestamp = currentTimestamp;
 
-    if (timeLeft <= 0) {
-      isGameRunning = false;
-      draw();
-    }
+  if (timeLeft <= 0) {
+    isGameRunning = false;
+    draw();
   }
 }
 
