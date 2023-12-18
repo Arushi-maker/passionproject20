@@ -65,6 +65,7 @@ function handleStartClick(event) {
   ) {
     canvas.removeEventListener("click", handleStartClick);
     isGameRunning = true;
+    lastTimestamp = performance.now();
     requestAnimationFrame(gameLoop);
   }
 }
@@ -126,16 +127,13 @@ function handleClick(event) {
     ) {
       if (object.isTarget) {
         score++;
+        resetObjects();
       } else {
         score--;
       }
-
-      resetObjects();
       break;
     }
   }
-
-  moveObjects(); // Move objects after every click
 }
 
 function resetObjects() {
@@ -145,34 +143,27 @@ function resetObjects() {
   }
 }
 
-function updateTimer(timestamp) {
+function updateTimer() {
   if (timeLeft > 0 && isGameRunning) {
-    if (lastTimestamp !== null) {
-      const elapsedMilliseconds = timestamp - lastTimestamp;
-      const elapsedSeconds = elapsedMilliseconds / 1000;
+    const currentTimestamp = performance.now();
+    const elapsedMilliseconds = currentTimestamp - lastTimestamp;
+    const elapsedSeconds = elapsedMilliseconds / 1000;
 
-      timeLeft -= elapsedSeconds;
+    timeLeft -= elapsedSeconds;
+    lastTimestamp = currentTimestamp;
+
+    if (timeLeft <= 0) {
+      isGameRunning = false;
+      drawGameOver();
     }
-
-    lastTimestamp = timestamp;
-    requestAnimationFrame(updateTimer);
-  } else {
-    isGameRunning = false;
-    drawGameOver();
   }
 }
 
 function gameLoop(timestamp) {
   if (isGameRunning) {
-    updateTimer(timestamp);
+    updateTimer();
     draw();
-  }
-}
-
-function moveObjects() {
-  for (const object of objects) {
-    object.x = Math.random() * (canvas.width - object.width);
-    object.y = Math.random() * (canvas.height - object.height);
+    requestAnimationFrame(gameLoop);
   }
 }
 
