@@ -47,29 +47,6 @@ function drawStartScreen() {
   canvas.addEventListener("click", handleStartClick);
 }
 
-function handleStartClick(event) {
-  const rect = canvas.getBoundingClientRect();
-  const mouseX = event.clientX - rect.left;
-  const mouseY = event.clientY - rect.top;
-
-  const startButtonWidth = 200;
-  const startButtonHeight = 50;
-  const startButtonX = canvas.width / 2 - startButtonWidth / 2;
-  const startButtonY = canvas.height / 2 + 20;
-
-  if (
-    mouseX >= startButtonX &&
-    mouseX <= startButtonX + startButtonWidth &&
-    mouseY >= startButtonY &&
-    mouseY <= startButtonY + startButtonHeight
-  ) {
-    canvas.removeEventListener("click", handleStartClick);
-    isGameRunning = true;
-    lastTimestamp = performance.now();
-    requestAnimationFrame(gameLoop);
-  }
-}
-
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -78,7 +55,7 @@ function draw() {
     drawScore();
     drawTimer();
   } else {
-    drawStartScreen();
+    drawGameOver();
   }
 }
 
@@ -109,6 +86,64 @@ function drawGameOver() {
   ctx.fillText("Game Over", canvas.width / 2 - 100, canvas.height / 2 - 20);
   ctx.font = "20px Arial";
   ctx.fillText(`Your score: ${score}`, canvas.width / 2 - 60, canvas.height / 2 + 20);
+
+  const restartButtonWidth = 200;
+  const restartButtonHeight = 50;
+  const restartButtonX = canvas.width / 2 - restartButtonWidth / 2;
+  const restartButtonY = canvas.height / 2 + 80;
+
+  ctx.fillStyle = "#00FF00";
+  ctx.fillRect(restartButtonX, restartButtonY, restartButtonWidth, restartButtonHeight);
+
+  ctx.fillStyle = "#000";
+  ctx.font = "20px Arial";
+  ctx.fillText("Restart Game", restartButtonX + 30, restartButtonY + 30);
+
+  canvas.addEventListener("click", handleRestartClick);
+}
+
+function handleStartClick(event) {
+  const rect = canvas.getBoundingClientRect();
+  const mouseX = event.clientX - rect.left;
+  const mouseY = event.clientY - rect.top;
+
+  const startButtonWidth = 200;
+  const startButtonHeight = 50;
+  const startButtonX = canvas.width / 2 - startButtonWidth / 2;
+  const startButtonY = canvas.height / 2 + 20;
+
+  if (
+    mouseX >= startButtonX &&
+    mouseX <= startButtonX + startButtonWidth &&
+    mouseY >= startButtonY &&
+    mouseY <= startButtonY + startButtonHeight
+  ) {
+    canvas.removeEventListener("click", handleStartClick);
+    isGameRunning = true;
+    lastTimestamp = performance.now();
+    requestAnimationFrame(gameLoop);
+  }
+}
+
+function handleRestartClick(event) {
+  const rect = canvas.getBoundingClientRect();
+  const mouseX = event.clientX - rect.left;
+  const mouseY = event.clientY - rect.top;
+
+  const restartButtonWidth = 200;
+  const restartButtonHeight = 50;
+  const restartButtonX = canvas.width / 2 - restartButtonWidth / 2;
+  const restartButtonY = canvas.height / 2 + 80;
+
+  if (
+    mouseX >= restartButtonX &&
+    mouseX <= restartButtonX + restartButtonWidth &&
+    mouseY >= restartButtonY &&
+    mouseY <= restartButtonY + restartButtonHeight
+  ) {
+    canvas.removeEventListener("click", handleRestartClick);
+    initGame();
+  }
 }
 
 function handleClick(event) {
@@ -154,7 +189,7 @@ function updateTimer() {
 
     if (timeLeft <= 0) {
       isGameRunning = false;
-      drawGameOver();
+      draw();
     }
   }
 }
