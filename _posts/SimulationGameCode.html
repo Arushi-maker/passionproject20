@@ -1,77 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mental Health Assessment and Simulation Game</title>
+    <title>Simulation Game Code</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .game-canvas {
+            display: block;
+            margin: auto;
+            border: 1px solid #000;
+            background-color: #000; /* Set background color to black */
+            color: #fff; /* Set text color to white */
+        }
+    </style>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <!-- Mental Health Assessment Section -->
-    <div id="mentalHealthSection">
-        <h1>Mental Health Assessment</h1>
-        <p>Answer the following questions to determine your mental health:</p>
-        <form id="questionnaire">
-            <h2>Anxiety Quiz</h2>
-            <label for="q1">Question 1: How often do you feel nervous?</label>
-            <input type="radio" name="q1" value="a"> Every day
-            <input type="radio" name="q1" value="b"> Once a week
-            <input type="radio" name="q1" value="c"> Every few months
-
-            <label for="q2">Question 2: How frequently do you worry a lot?</label>
-            <input type="radio" name="q2" value="a"> Every day
-            <input type="radio" name="q2" value="b"> Once a week
-            <input type="radio" name="q2" value="c"> Every few months
-
-            <label for="q3">Question 3: How often are you overly scared (of anything, really)?</label>
-            <input type="radio" name="q3" value="a"> Every day
-            <input type="radio" name="q3" value="b"> Once a week
-            <input type="radio" name="q3" value="c"> Every few months
-
-            <h2>Depression Quiz</h2>
-            <label for="q4">Question 1: How often do you feel extremely down, upset, or sad?</label>
-            <input type="radio" name="q4" value="a"> Every day
-            <input type="radio" name="q4" value="b"> Once a week
-            <input type="radio" name="q4" value="c"> Every few months
-
-            <label for="q5">Question 2: When do you tend to have less energy or willingness to do anything?</label>
-            <input type="radio" name="q5" value="a"> Every day
-            <input type="radio" name="q5" value="b"> Once a week
-            <input type="radio" name="q5" value="c"> Every few months
-
-            <label for="q6">Question 3: How often do you think negatively about yourself (ex: you only let everyone down)?</label>
-            <input type="radio" name="q6" value="a"> Every day
-            <input type="radio" name="q6" value="b"> Once a week
-            <input type="radio" name="q6" value="c"> Every few months
-
-            <button type="button" onclick="startGame()">Start Game</button>
-        </form>
-    </div>
-
-    <!-- Simulation Game Section -->
-    <div id="simulationGameSection" style="display: none;">
-        <!-- Game elements will be added by the game.js file -->
-        <h1>Simulation Game Instructions</h1>
-        <p>Click on the red squares to score points. Avoid clicking on other colored squares. You have 120 seconds. Good luck!</p>
-        <canvas id="gameCanvas" class="game-canvas" width="800" height="600"></canvas>
-        <script src="game.js"></script>
-    </div>
-
-    <script>
-        function startGame() {
-            // Hide the mental health section
-            document.getElementById("mentalHealthSection").style.display = "none";
-
-            // Show the simulation game section
-            document.getElementById("simulationGameSection").style.display = "block";
-
-            // You can pass the questionnaire responses to the game.js file for further processing if needed
-            // For example, you can access the responses using document.getElementById and pass them to your game logic.
-            // Example: const q1Response = document.querySelector('input[name="q1"]:checked').value;
-        }
-    </script>
+    <h1>Simulation Game Instructions</h1>
+    <p>Click on the red squares to score points. Avoid clicking on other colored squares. You have 120 seconds. Good luck!</p>
+    <canvas id="gameCanvas" class="game-canvas" width="800" height="600"></canvas>
+    <button id="pauseButton">Pause Game</button>
+    <script src="game.js"></script>
 </body>
-
 </html>
