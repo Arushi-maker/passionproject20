@@ -205,5 +205,10 @@ function gameLoop(timestamp) {
 
 canvas.addEventListener("click", handleClick);
 
+function addDiagnostic(drawGameOver) {
+  is (isGameRunning) = false
+  draw(addDiagnostic)
+  addDiagnostic=("you have anxiety", "you have depression")
+}
 // Initialize the game
 initGame();
