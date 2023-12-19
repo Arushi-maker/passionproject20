@@ -8,22 +8,43 @@
         body {
             margin: 0;
             overflow: hidden;
+            background-color: #000; /* Set background color to black */
+            color: #fff; /* Set text color to white */
         }
 
-        .game-canvas {
+        canvas {
             display: block;
             margin: auto;
             border: 1px solid #000;
-            background-color: #000; /* Set background color to black */
-            color: #fff; /* Set text color to white */
         }
     </style>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <h1>Mental Health Questionnaire</h1>
+    <p>Anxiety quiz (High functioning and low functioning until I can make two different ones):</p>
+    <p>Question 1: How often do you feel nervous?</p>
+    <form id="anxietyForm">
+        <input type="radio" name="q1" value="Every day"> Every day
+        <input type="radio" name="q1" value="Once a week"> Once a week
+        <input type="radio" name="q1" value="Every few months"> Every few months
+        <br>
+        <!-- Add similar questions for Q2 and Q3 -->
+        <br>
+        <p>Depression quiz:</p>
+        <p>Question 1: How often do you feel extremely down, upset, or sad?</p>
+        <form id="depressionForm">
+            <input type="radio" name="q4" value="Every day"> Every day
+            <input type="radio" name="q4" value="Once a week"> Once a week
+            <input type="radio" name="q4" value="Every few months"> Every few months
+            <br>
+            <!-- Add similar questions for Q5 and Q6 -->
+        </form>
+    </form>
+    
     <h1>Simulation Game Instructions</h1>
     <p>Click on the red squares to score points. Avoid clicking on other colored squares. You have 120 seconds. Good luck!</p>
-    <canvas id="gameCanvas" class="game-canvas" width="800" height="600"></canvas>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
     <button id="pauseButton">Pause Game</button>
     <script src="game.js"></script>
 </body>
