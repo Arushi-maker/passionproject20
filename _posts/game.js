@@ -5,9 +5,36 @@ let objects = [];
 let score = 0;
 let timeLeft = 120;
 let isGameRunning = false;
-let isGamePaused = false;
 let lastTimestamp = null;
 let lastMoveTimestamp = 0;
+
+// New function to handle submitting the questionnaire and starting the game
+function handleQuestionnaireSubmit() {
+    const anxietyForm = document.getElementById("anxietyForm");
+    const depressionForm = document.getElementById("depressionForm");
+
+    const anxietyAnswers = [...anxietyForm.elements].filter((el) => el.checked).map((el) => el.value);
+    const depressionAnswers = [...depressionForm.elements].filter((el) => el.checked).map((el) => el.value);
+
+    // Check if all questions are answered
+    if (anxietyAnswers.length === 3 && depressionAnswers.length === 3) {
+        // Process answers (you can add your logic here)
+
+        // Remove the questionnaire and start the game
+        document.body.removeChild(anxietyForm);
+        document.body.removeChild(depressionForm);
+        initGame();
+        requestAnimationFrame(gameLoop);
+    } else {
+        alert("Please answer all questions before starting the game.");
+    }
+}
+
+// New event listener for questionnaire submit button
+const questionnaireSubmitButton = document.createElement("button");
+questionnaireSubmitButton.textContent = "Submit Questionnaire";
+questionnaireSubmitButton.addEventListener("click", handleQuestionnaireSubmit);
+document.body.appendChild(questionnaireSubmitButton);
 
 function initGame() {
   // Initialize game objects
@@ -23,7 +50,6 @@ function initGame() {
   score = 0;
   timeLeft = 120;
   isGameRunning = false;
-  isGamePaused = false;
   lastTimestamp = null;
   lastMoveTimestamp = 0;
 
@@ -59,7 +85,6 @@ function draw() {
     drawObjects();
     drawScore();
     drawTimer();
-    drawPauseButton(); // Added to display the pause button during the game
   } else {
     drawGameOver();
   }
@@ -86,22 +111,8 @@ function drawTimer() {
   ctx.fillText(timerText, canvas.width - timerWidth - 10, 30);
 }
 
-function drawPauseButton() {
-  const pauseButtonWidth = 100;
-  const pauseButtonHeight = 30;
-  const pauseButtonX = canvas.width - pauseButtonWidth - 10;
-  const pauseButtonY = 10;
-
-  ctx.fillStyle = "#FFD700"; // Set pause button color to gold
-  ctx.fillRect(pauseButtonX, pauseButtonY, pauseButtonWidth, pauseButtonHeight);
-
-  ctx.fillStyle = "#000";
-  ctx.font = "16px Arial";
-  ctx.fillText("Pause Game", pauseButtonX + 10, pauseButtonY + 20);
-}
-
 function drawGameOver() {
-  ctx.fillStyle = "#fff"; // Set text color to white
+  ctx.fillStyle = "#000";
   ctx.font = "40px Arial";
   ctx.fillText("Game Over", canvas.width / 2 - 100, canvas.height / 2 - 20);
   ctx.font = "20px Arial";
@@ -144,110 +155,58 @@ function handleStartClick(event) {
   }
 }
 
-function drawPauseScreen() {
-  ctx.fillStyle = "rgba(0, 0, 0, 0.5)"; // Add a semi-transparent black overlay
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  ctx.fillStyle = "#fff"; // Set text color to white
-  ctx.font = "40px Arial";
-  ctx.fillText("Game Paused", canvas.width / 2 - 120, canvas.height / 2 - 20);
-
-  const resumeButtonWidth = 200;
-  const resumeButtonHeight = 50;
-  const resumeButtonX = canvas.width / 2 - resumeButtonWidth / 2;
-  const resumeButtonY = canvas.height / 2 + 20;
-
-  ctx.fillStyle = "#00FF00";
-  ctx.fillRect(resumeButtonX, resumeButtonY, resumeButtonWidth, resumeButtonHeight);
-
-  ctx.fillStyle = "#000";
-  ctx.font = "20px Arial";
-  ctx.fillText("Resume Game", resumeButtonX + 30, resumeButtonY + 30);
-
-  canvas.addEventListener("click", handleResumeClick);
-}
-
-function drawPauseButton() {
-  const pauseButtonWidth = 100;
-  const pauseButtonHeight = 30;
-  const pauseButtonX = canvas.width - pauseButtonWidth - 10;
-  const pauseButtonY = 10;
-
-  ctx.fillStyle = "#FFD700"; // Set pause button color to gold
-  ctx.fillRect(pauseButtonX, pauseButtonY, pauseButtonWidth, pauseButtonHeight);
-
-  ctx.fillStyle = "#000";
-  ctx.font = "16px Arial";
-  ctx.fillText("Pause Game", pauseButtonX + 10, pauseButtonY + 20);
-
-  canvas.addEventListener("click", handlePauseClick);
-}
-
-function handlePauseClick(event) {
+function handleRestartClick(event) {
   const rect = canvas.getBoundingClientRect();
   const mouseX = event.clientX - rect.left;
   const mouseY = event.clientY - rect.top;
 
-  const pauseButtonWidth = 100;
-  const pauseButtonHeight = 30;
-  const pauseButtonX = canvas.width - pauseButtonWidth - 10;
-  const pauseButtonY = 10;
+  const restartButtonWidth = 200;
+  const restartButtonHeight = 50;
+  const restartButtonX = canvas.width / 2 - restartButtonWidth / 2;
+  const restartButtonY = canvas.height / 2 + 80;
 
   if (
-    mouseX >= pauseButtonX &&
-    mouseX <= pauseButtonX + pauseButtonWidth &&
-    mouseY >= pauseButtonY &&
-    mouseY <= pauseButtonY + pauseButtonHeight
+    mouseX >= restartButtonX &&
+    mouseX <= restartButtonX + restartButtonWidth &&
+    mouseY >= restartButtonY &&
+    mouseY <= restartButtonY + restartButtonHeight
   ) {
-    isGamePaused = true;
-    canvas.removeEventListener("click", handlePauseClick);
-    drawPauseScreen();
-  }
-}
-
-function handleResumeClick(event) {
-  const rect = canvas.getBoundingClientRect();
-  const mouseX = event.clientX - rect.left;
-  const mouseY = event.clientY - rect.top;
-
-  const resumeButtonWidth = 200;
-  const resumeButtonHeight = 50;
-  const resumeButtonX = canvas.width / 2 - resumeButtonWidth / 2;
-  const resumeButtonY = canvas.height / 2 + 20;
-
-  if (
-    mouseX >= resumeButtonX &&
-    mouseX <= resumeButtonX + resumeButtonWidth &&
-    mouseY >= resumeButtonY &&
-    mouseY <= resumeButtonY + resumeButtonHeight
-  ) {
-    isGamePaused = false;
-    canvas.removeEventListener("click", handleResumeClick);
+    initGame();
     requestAnimationFrame(gameLoop);
   }
 }
 
-function drawPauseScreen() {
-  ctx.fillStyle = "rgba(0, 0, 0, 0.5)"; // Add a semi-transparent black overlay
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+function handleClick(event) {
+  if (!isGameRunning) return;
 
-  ctx.fillStyle = "#fff"; // Set text color to white
-  ctx.font = "40px Arial";
-  ctx.fillText("Game Paused", canvas.width / 2 - 120, canvas.height / 2 - 20);
+  const rect = canvas.getBoundingClientRect();
+  const mouseX = event.clientX - rect.left;
+  const mouseY = event.clientY - rect.top;
 
-  const resumeButtonWidth = 200;
-  const resumeButtonHeight = 50;
-  const resumeButtonX = canvas.width / 2 - resumeButtonWidth / 2;
-  const resumeButtonY = canvas.height / 2 + 20;
+  for (const object of objects) {
+    if (
+      mouseX >= object.x &&
+      mouseX <= object.x + object.width &&
+      mouseY >= object.y &&
+      mouseY <= object.y + object.height
+    ) {
+      if (object.isTarget) {
+        score++;
+      } else {
+        score--;
+      }
 
-  ctx.fillStyle = "#00FF00";
-  ctx.fillRect(resumeButtonX, resumeButtonY, resumeButtonWidth, resumeButtonHeight);
+      resetObjects();
+      break;
+    }
+  }
+}
 
-  ctx.fillStyle = "#000";
-  ctx.font = "20px Arial";
-  ctx.fillText("Resume Game", resumeButtonX + 30, resumeButtonY + 30);
-
-  canvas.addEventListener("click", handleResumeClick);
+function resetObjects() {
+  for (const object of objects) {
+    object.x = Math.random() * (canvas.width - object.width);
+    object.y = Math.random() * (canvas.height - object.height);
+  }
 }
 
 function updateTimer() {
@@ -265,7 +224,7 @@ function updateTimer() {
 }
 
 function gameLoop(timestamp) {
-  if (!isGamePaused) {
+  if (isGameRunning) {
     updateTimer();
     draw();
     requestAnimationFrame(gameLoop);
