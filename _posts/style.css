@@ -1,5 +1,14 @@
 body {
     margin: 0;
+    overflow: hidden;
+}
+
+#questionnaire {
+    color: #fff; /* Set text color to white for the questionnaire */
+}
+
+#gameCanvas, #pauseButton, #startButton {
+    display: none; /* Initially hide game-related elements */
 }
 
 .game-canvas {
@@ -7,5 +16,5 @@ body {
     margin: auto;
     border: 1px solid #000;
     background-color: #000; /* Set background color to black */
-    color: #fff; /* Set text color to white */
+    color: #fff; /* Set text color to white for the game */
 }

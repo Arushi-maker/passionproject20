@@ -21,6 +21,10 @@
         #gameCanvas, #pauseButton, #startButton {
             display: none;
         }
+
+        #gameContent {
+            display: none;
+        }
     </style>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -89,14 +93,14 @@
         <button id="submitQuestionnaire" onclick="startGame()">Submit Quiz</button>
     </div>
 
-    <div id="gameContent" style="display: none;">
+    <div id="gameContent">
         <h1>Simulation Game Instructions</h1>
         <p>Click on the red squares to score points. Avoid clicking on other colored squares. You have 120 seconds. Good luck!</p>
         <canvas id="gameCanvas" width="800" height="600"></canvas>
         <button id="pauseButton">Pause Game</button>
     </div>
 
-    <button id="startButton" onclick="startGame()">Start Game</button>
+    <button id="startButton" onclick="startGame()">Start Game</button> 
 
     <script src="game.js"></script>
     <script>
@@ -105,7 +109,6 @@
             document.getElementById("gameContent").style.display = "block";
             document.getElementById("pauseButton").style.display = "block";
             document.getElementById("startButton").style.display = "none";
-
             initGame();
             requestAnimationFrame(gameLoop);
         }
