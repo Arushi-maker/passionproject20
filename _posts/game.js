@@ -8,10 +8,57 @@ let isGameRunning = false;
 let lastTimestamp = null;
 let lastMoveTimestamp = 0;
 
-// New function to handle submitting the questionnaire and starting the game
+// Additional variable to track whether the questionnaire is completed
+let isQuestionnaireCompleted = false;
+
+function initGame() {
+  // Initialize game objects
+  objects = [
+    { x: 100, y: 100, width: 50, height: 50, color: "#FF0000", isTarget: true },
+    { x: 200, y: 200, width: 50, height: 50, color: "#00FF00", isTarget: false },
+    { x: 300, y: 300, width: 50, height: 50, color: "#0000FF", isTarget: false },
+    { x: 400, y: 400, width: 50, height: 50, color: "#FFA500", isTarget: true }, // Orange square
+    { x: 500, y: 500, width: 50, height: 50, color: "#FFFF00", isTarget: false }, // Yellow square
+    { x: 600, y: 200, width: 50, height: 50, color: "#800080", isTarget: false }, // Purple square
+  ];
+
+  score = 0;
+  timeLeft = 120;
+  isGameRunning = false;
+  lastTimestamp = null;
+  lastMoveTimestamp = 0;
+
+  drawQuestionnaire();
+}
+
+function drawQuestionnaire() {
+  // Hide the canvas
+  canvas.style.display = "none";
+
+  // Display the questionnaire (assuming you have an element with ID "questionnaire" for the questionnaire)
+  const questionnaire = document.getElementById("questionnaire");
+  questionnaire.style.display = "block";
+
+  // Add event listener to the questionnaire submit button
+  const submitButton = document.getElementById("submitQuestionnaire");
+  submitButton.addEventListener("click", handleQuestionnaireSubmit);
+}
+
 function handleQuestionnaireSubmit() {
-    const anxietyForm = document.getElementById("anxietyForm");
-    const depressionForm = document.getElementById("depressionForm");
+  const anxietyForm = document.getElementById("anxietyForm");
+  const depressionForm = document.getElementById("depressionForm");
+
+  // Hide the questionnaire
+  const questionnaire = document.getElementById("questionnaire");
+  questionnaire.style.display = "none";
+
+  // Show the canvas
+  canvas.style.display = "block";
+
+  // Start the game
+  isGameRunning = true;
+  requestAnimationFrame(gameLoop);
+}
 
     const anxietyAnswers = [...anxietyForm.elements].filter((el) => el.checked).map((el) => el.value);
     const depressionAnswers = [...depressionForm.elements].filter((el) => el.checked).map((el) => el.value);
@@ -28,7 +75,6 @@ function handleQuestionnaireSubmit() {
     } else {
         alert("Please answer all questions before starting the game.");
     }
-}
 
 // New event listener for questionnaire submit button
 const questionnaireSubmitButton = document.createElement("button");
