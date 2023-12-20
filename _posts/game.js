@@ -42,9 +42,6 @@ function initializeGame() {
 }
 
 function drawQuestionnaire() {
-  // Hide the canvas
-  canvas.style.display = "none";
-
   // Display the questionnaire (assuming you have an element with ID "questionnaire" for the questionnaire)
   const questionnaire = document.getElementById("questionnaire");
   questionnaire.style.display = "block";
@@ -140,7 +137,7 @@ function handleClick(event) {
 
   const rect = canvas.getBoundingClientRect();
   const mouseX = event.clientX - rect.left;
-  const mouseY = event.clientY - rect.top;
+  mouseY = event.clientY - rect.top;
 
   for (const object of objects) {
     if (
