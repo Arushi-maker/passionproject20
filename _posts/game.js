@@ -11,7 +11,20 @@ let lastMoveTimestamp = 0;
 // Additional variable to track whether the questionnaire is completed
 let isQuestionnaireCompleted = false;
 
-function initGame() {
+function startGame() {
+
+  handleQuizSubmission();
+}
+
+function handleQuizSubmission() {
+  document.getElementById("questionnaire").style.display = "none";
+
+  document.getElementById("gameContent").style.display = "block";
+
+  initializeGame();
+}
+
+function initializeGame() {
   // Initialize game objects
   objects = [
     { x: 100, y: 100, width: 50, height: 50, color: "#FF0000", isTarget: true },
@@ -75,6 +88,7 @@ function handleQuestionnaireSubmit() {
     } else {
         alert("Please answer all questions before starting the game.");
     }
+    requestAnimationFrame(gameLoop);
 
 // New event listener for questionnaire submit button
 const questionnaireSubmitButton = document.createElement("button");
