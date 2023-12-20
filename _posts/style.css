@@ -10,7 +10,7 @@ body {
 }
 
 canvas {
-    display: block;
+    display: block !important; /* Force the game canvas to be visible */
     margin: auto;
     border: 1px solid #fff; /* Set border color to white for the game canvas */
     background-color: #000; /* Set canvas background color to black */
