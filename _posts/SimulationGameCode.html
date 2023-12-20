@@ -17,21 +17,26 @@
             margin: auto;
             border: 1px solid #000;
         }
+
+        #gameCanvas, #pauseButton, #startButton {
+            display: none;
+        }
     </style>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="questionnaire">
         <h1>Mental Health Questionnaire</h1>
+
         <p>Anxiety quiz (High functioning and low functioning until I can make two different ones):</p>
+
         <!-- Question 1 -->
         <p>Question 1: How often do you feel nervous?</p>
-        <form id="anxietyForm">
+        <form id="anxietyForm1">
             <input type="radio" name="q1" value="Every day"> Every day
             <input type="radio" name="q1" value="Once a week"> Once a week
             <input type="radio" name="q1" value="Every few months"> Every few months
             <br>
-
         </form>
 
         <!-- Question 2 -->
@@ -53,14 +58,14 @@
         </form>
 
         <p>Depression quiz:</p>
+
         <!-- Question 4 -->
         <p>Question 1: How often do you feel extremely down, upset, or sad?</p>
-        <form id="depressionForm">
+        <form id="depressionForm1">
             <input type="radio" name="q4" value="Every day"> Every day
             <input type="radio" name="q4" value="Once a week"> Once a week
             <input type="radio" name="q4" value="Every few months"> Every few months
             <br>
-
         </form>
 
         <!-- Question 5 -->
@@ -81,13 +86,29 @@
             <br>    
         </form>
 
-        <button id="submitQuestionnaire">Submit Quiz</button>
+        <button id="submitQuestionnaire" onclick="startGame()">Submit Quiz</button>
     </div>
 
-    <h1>Simulation Game Instructions</h1>
-    <p>Click on the red squares to score points. Avoid clicking on other colored squares. You have 120 seconds. Good luck!</p>
-    <canvas id="gameCanvas" width="800" height="600"></canvas>
-    <button id="pauseButton">Pause Game</button>
+    <div id="gameContent" style="display: none;">
+        <h1>Simulation Game Instructions</h1>
+        <p>Click on the red squares to score points. Avoid clicking on other colored squares. You have 120 seconds. Good luck!</p>
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        <button id="pauseButton">Pause Game</button>
+    </div>
+
+    <button id="startButton" onclick="startGame()">Start Game</button>
+
     <script src="game.js"></script>
+    <script>
+        function startGame() {
+            document.getElementById("questionnaire").style.display = "none";
+            document.getElementById("gameContent").style.display = "block";
+            document.getElementById("pauseButton").style.display = "block";
+            document.getElementById("startButton").style.display = "none";
+
+            initGame();
+            requestAnimationFrame(gameLoop);
+        }
+    </script>
 </body>
 </html>
