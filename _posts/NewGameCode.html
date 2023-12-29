@@ -48,6 +48,12 @@ function component(width, height, color, x, y) {
 
 function updateGameArea() {
     myGameArea.clear();
+    redGamePiece.x += 1;
+    redGamePiece.y -= 1;
+    yellowGamePiece.x += 1;
+    yellowGamePiece.y += 1;
+    blueGamePiece.x -= 1;
+    blueGamePiece.y += 1;
     redGamePiece.update();
     yellowGamePiece.update();
     blueGamePiece.update();
