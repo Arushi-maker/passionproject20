@@ -4,22 +4,29 @@
 <style>
 canvas {
     border: 2px solid blue;
-    background-color: red;
-        
+    background-color: red;     
 }
 </style>
 </head>
 <body onload = "startGame()">
 <script>
 
-var myGamePiece;
-
 function startGame() {
-    redGamePiece = new component(30, 30, "red", 10,  120);
-    blueGamePiece = new component(30, 30, "blue", 50,  40);
-    yellowGamePiece = new component(30, 30, "red", 20,  80);
+    myGameArea.start();
+}
+
+var myGameArea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = 750;
+        this.canvas.height = 500;
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+    }
 }
 </script>
-</body>
 
+<p>We have created a game area!</p>
+
+</body>
 </html>
