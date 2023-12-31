@@ -16,7 +16,6 @@ function mycolor() {
 document.getElementById('red')
     .addEventListener('input', mycolor);
 
-
 document.getElementById('green')
     .addEventListener('input', mycolor);
 
@@ -24,7 +23,10 @@ document.getElementById('blue')
     .addEventListener('input', mycolor);
 
 function binaryToDecimal(binary) {
-    return parseInt(binary, 2);
+    return parseInt(binary, 2); // parseInt is a procedure that contributes to the program’s intended purpose, where I have defined:
+    // the procedure’s name (binaryToDecimal)
+    // the return type (integer value)
+    // one or more parameters (binary, 2)
 }
 
 function decimalToBinary(decimal) {
