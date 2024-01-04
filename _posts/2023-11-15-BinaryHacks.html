@@ -50,11 +50,11 @@
             var binaryBlue = decimalToBinary(blue);
 
             var backgroundColor = `rgb(${red}, ${green}, ${blue})`;
-            
-            call.updateBackground()
 
             document.getElementById("background").style.backgroundColor = backgroundColor;
         }
+
+        call.updateBackground()
 
         function decimalToBinary(decimal) {
             call.decimal.toString(2).padStart(8, '0');
