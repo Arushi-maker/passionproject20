@@ -1,64 +1,15 @@
 <!DOCTYPE html>
+<html lang = "en">
 <head>
-<meta name = "viewport" content = "width=device-width, initial scale = 1.0">
-<style>
-canvas {
-    border: 10px solid black;
-    background-color: white;
-}
-</style>
+    <meta charset = "UTF-8">
+    <title>Dinosaur Game</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body onload = "startGame()">
-<script>
-
-var redGamePiece, blueGamePiece, yellowGamePiece;
-
-function startGame() {
-    redGamePiece = new component(40, 40, "red", 10, 200);
-    yellowGamePiece = new component(40, 40, "yellow", 50, 60);
-    blueGamePiece = new component(40, 40, "blue", 75, 110);
-    myGameArea.start();
-}
-
-var myGameArea = {
-    canvas : document.createElement("canvas"),
-    start : function() {
-        this.canvas.width = 750;
-        this.canvas.height = 500;
-        this.context = this.canvas.getContext("2d");
-        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-        this.interval = setInterval(updateGameArea, 20);
-    },
-    clear : function() {
-        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    }
-}
-
-function component(width, height, color, x, y) {
-    this.width = width;
-    this.height = height;
-    this.x = x;
-    this.y = y;
-    this.update = function() {
-        ctx = myGameArea.context;
-        ctx.fillStyle = color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-    }
-}
-
-function updateGameArea() {
-    myGameArea.clear();
-    redGamePiece.x += 1;
-    redGamePiece.y -= 1;
-    yellowGamePiece.x += 1;
-    yellowGamePiece.y += 1;
-    blueGamePiece.x -= 1;
-    blueGamePiece.y += 1;
-    redGamePiece.update();
-    yellowGamePiece.update();
-    blueGamePiece.update();
-}
-</script>
-<p>Three components on our game area.</p>
+<body>
+    <div id = "game">
+        <div id="character"></div>
+        <div id="block"></div>
+    </div>
+<script src="script.js"></script>
 </body>
 </html>
