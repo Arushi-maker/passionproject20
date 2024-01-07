@@ -1,20 +1,11 @@
 var character = document.getElementById("character");
-document.addEventListener("click", jump);
+document.addEventListener("click",jump);
 function jump(){
     if(character.classList == "animate"){return;}
     character.classList.add("animate");
-    setTimeout(removeJump,500);
+    setTimeout(removeJump,1000);
 };
-document.addEventListener("click", "click", jump, jump);
-function doublejump(){
-    if(character.classList == "animate"){return;}
-    character.classList.add("animate");
-    setTimeout(removeDoubleJump,1000);
-}
 function removeJump(){
-    character.classList.remove("animate");
-}
-function removeDoubleJump(){
     character.classList.remove("animate");
 }
 var block = document.getElementById("block");

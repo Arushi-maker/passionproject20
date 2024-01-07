@@ -21,15 +21,7 @@
 .animate{
     animation: jump 500ms linear;
 }
-@keyframes doublejump{
-    0%{top: 150px;}
-    30%{top: 100px;}
-    70%{top: 100px;}
-    100%{top: 150px;}
-}
-.animate{
-    animation: doublejump 1000ms linear;
-}
+
 #block{
     width: 20px;
     height: 20px;
