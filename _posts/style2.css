@@ -46,3 +46,17 @@
     left: 450px;
     animation: myObstacle 5s infinite linear;
 }
+@keyframes myObstacle{
+    0%{left: 500px}
+    50%{left: 250px}
+    100%{left: -20px}
+}
+div {
+    width: 10px;
+    height: 20px;
+    position: relative;
+    background-color: green;
+    animation-name: myObstacle;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+  }
