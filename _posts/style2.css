@@ -38,7 +38,7 @@
     width: 20px;
     height: 20px;
     position: relative;
-    top: 60px;
+    top: 100px;
     left: 500px;
     animation: block 10s infinite linear;
     z-index: -1;
