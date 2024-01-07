@@ -20,6 +20,4 @@ var checkDead = setInterval(function() {
         counter++;
         document.getElementById("scoreSpan").innerHTML = Math.floor(counter/100);
     }
-}, 10);
-
-setInterval(checkDead, 10);
+}, setInterval(checkDead, 10));
