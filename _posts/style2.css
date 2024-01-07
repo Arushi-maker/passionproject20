@@ -46,7 +46,7 @@ div {
     background-color: blue;
     width: 20px;
     height: 20px;
-    position: relative;
+    position: right;
     top: 100px;
     left: 100px;
     animation: block 5s infinite linear;
