@@ -39,7 +39,7 @@
     height: 20px;
     position: relative;
     top: 0px;
-    left: 210px;
+    left: 500px;
     animation: block 10s infinite linear;
     z-index: -1;
 }
