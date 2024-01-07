@@ -36,3 +36,13 @@
     50%{left: 250px}
     100%{left: -20px}
 }
+
+#myObstacle{
+    background-color: green;
+    width: 10px;
+    height: 200px;
+    position: relative;
+    top: 300px;
+    left: 120px;
+    animation: myObstacle 5s infinite linear;
+}
