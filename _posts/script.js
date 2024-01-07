@@ -5,7 +5,7 @@ function jump(){
     character.classList.add("animate");
     setTimeout(removeJump,500);
 };
-document.addEventListener("click", jump, jump);
+document.addEventListener("click", "click", jump, jump);
 function doublejump(){
     if(character.classList == "animate"){return;}
     character.classList.add("animate");
