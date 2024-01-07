@@ -31,28 +31,13 @@
     left: 500px;
     animation: block 5s infinite linear;
 }
-@keyframes block{
-    0%{left: 500px}
-    50%{left: 250px}
-    100%{left: -20px}
-}
-
-#myObstacle{
-    background-color: green;
-    width: 10px;
-    height: 20px;
-    position: relative;
-    top: 250px;
-    left: 450px;
-    animation: block 5s infinite linear;
-}
 div {
     background-color: white;
     animation-name: example;
     animation-duration: 5s;
     animation-iteration-count: infinite;
   }
-@keyframes myObstacle{
+@keyframes block{
     0%{left: 500px}
     50%{left: 250px}
     100%{left: -20px}
