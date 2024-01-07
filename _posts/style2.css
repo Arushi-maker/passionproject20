@@ -22,8 +22,8 @@
     animation: jump 300ms linear;
 }
 #block{
-    width: 10px;
-    height: 10px;
+    width: 20px;
+    height: 20px;
     background-color: blue;
     position: relative;
     top: 130px;
