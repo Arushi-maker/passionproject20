@@ -14,6 +14,7 @@ var checkDead = setInterval(function() {
     if(blockLeft<20 && blockLeft>-20 && characterTop>=130){
         block.style.animation = "none";
         block.style.display = "none";
+        console.log("Collision detected. Showing alert.");
         alert("Game Over. score: "+Math.floor(counter/100));
         counter=0;
         block.style.animation = "block 5s infinite linear";
