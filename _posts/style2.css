@@ -19,7 +19,7 @@
     100%{top: 150px;}
 }
 .animate{
-    animation: jump 300ms linear;
+    animation: jump 500ms linear;
 }
 #block{
     width: 20px;
