@@ -37,9 +37,9 @@
     width: 20px;
     height: 20px;
     position: relative;
-    top: 130px;
-    left: 500px;
-    animation: block 5s infinite linear;
+    top: 20px;
+    left: 210px;
+    animation: block 10s infinite linear;
 }
 @keyframes block{
     0%{left: 500px}
