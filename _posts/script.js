@@ -3,7 +3,7 @@ document.addEventListener("click",jump);
 function jump(){
     if(character.classList == "animate"){return;}
     character.classList.add("animate");
-    setTimeout(removeJump,300);
+    setTimeout(removeJump,500);
 };
 function removeJump(){
     character.classList.remove("animate");
