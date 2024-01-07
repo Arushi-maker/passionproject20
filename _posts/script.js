@@ -1,5 +1,5 @@
 var character = document.getElementById("character");
-document.addEventListener("click",jump);
+document.addEventListener("click", jump, jump);
 function jump(){
     if(character.classList == "animate"){return;}
     character.classList.add("animate");
