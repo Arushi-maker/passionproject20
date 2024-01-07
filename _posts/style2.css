@@ -48,7 +48,7 @@ div {
     height: 20px;
     position: relative;
     top: 100px;
-    left: 450px;
+    left: 100px;
     animation: block 5s infinite linear;
 }
 div {
