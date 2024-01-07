@@ -29,8 +29,6 @@
     position: relative;
     top: 130px;
     left: 500px;
-}
-.animate{
     animation: block 5s infinite linear;
 }
 @keyframes block1{
