@@ -22,7 +22,7 @@
     100%{top: 150px;}
 }
 
-#block{
+#block1{
     background-color: blue;
     width: 20px;
     height: 20px;
@@ -37,7 +37,28 @@ div {
     animation-duration: 5s;
     animation-iteration-count: infinite;
   }
-@keyframes block{
+@keyframes block1{
+    0%{left: 500px}
+    50%{left: 250px}
+    100%{left: -20px}
+}
+
+#block2{
+    background-color: orangered;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 130px;
+    left: 500px;
+    animation: block 5s infinite linear;
+}
+div {
+    background-color: white;
+    animation-name: example;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+  }
+@keyframes block2{
     0%{left: 500px}
     50%{left: 250px}
     100%{left: -20px}
