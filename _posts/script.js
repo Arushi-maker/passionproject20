@@ -14,6 +14,9 @@ function doublejump(){
 function removeJump(){
     character.classList.remove("animate");
 }
+function removeDoubleJump(){
+    character.classList.remove("animate");
+}
 var block = document.getElementById("block");
 function checkDead(){
     let characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
