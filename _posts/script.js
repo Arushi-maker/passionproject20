@@ -8,7 +8,7 @@ function jump(){
 document.addEventListener("click", jump, jump);
 function doublejump(){
     if(character.classList == "animate"){return;}
-    character.classList.add("animale");
+    character.classList.add("animate");
     setTimeout(removeJump,1000);
 }
 function removeJump(){
