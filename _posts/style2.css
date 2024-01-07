@@ -40,7 +40,7 @@
     position: relative;
     top: 92px;
     left: 500px;
-    animation: block 5s infinite linear;
+    animation: block 10s infinite linear;
     z-index: -1;
 }
 @keyframes block{
