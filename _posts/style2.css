@@ -37,7 +37,7 @@ div {
     animation-duration: 5s;
     animation-iteration-count: infinite;
   }
-@keyframes block{
+@keyframes block1{
     0%{left: 500px}
     50%{left: 250px}
     100%{left: -20px}
@@ -46,9 +46,9 @@ div {
     background-color: blue;
     width: 20px;
     height: 20px;
-    position: right;
+    position: relative;
     top: 100px;
-    left: 100px;
+    left: 10px;
     animation: block 5s infinite linear;
 }
 div {
@@ -57,7 +57,7 @@ div {
     animation-duration: 5s;
     animation-iteration-count: infinite;
   }
-@keyframes block{
+@keyframes block2{
     0%{left: 500px}
     50%{left: 250px}
     100%{left: -20px}
@@ -77,7 +77,7 @@ div {
     animation-duration: 5s;
     animation-iteration-count: infinite;
   }
-@keyframes block{
+@keyframes block3{
     0%{left: 500px}
     50%{left: 250px}
     100%{left: -20px}
@@ -97,7 +97,7 @@ div {
     animation-duration: 5s;
     animation-iteration-count: infinite;
   }
-@keyframes block{
+@keyframes block4{
     0%{left: 500px}
     50%{left: 250px}
     100%{left: -20px}
