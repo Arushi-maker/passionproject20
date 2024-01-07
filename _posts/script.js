@@ -29,7 +29,7 @@ var checkDead = setInterval(function() {
         alert("Game Over. score: "+Math.floor(counter/100));
         counter=0;
         block1.style.animation = "block 5s infinite linear";
-        block2.style.animation = "block 10s infinite linear";
+        block2.style.animation = "block 8s infinite linear";
         block1.style.display = "block";
         block2.style.display = "block";
     } else{
