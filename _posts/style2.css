@@ -44,14 +44,11 @@
     position: relative;
     top: 250px;
     left: 450px;
-    animation: myObstacle 5s infinite linear;
+    animation: block 5s infinite linear;
 }
 div {
-    width: 10px;
-    height: 20px;
-    position: relative;
     background-color: white;
-    animation-name: myObstacle;
+    animation-name: example;
     animation-duration: 5s;
     animation-iteration-count: infinite;
   }
