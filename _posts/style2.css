@@ -1,6 +1,6 @@
 #canvas{
-    border: 1ox solid #000000;
-    background-color: #f1f1f1;
+    border: 1px solid #000000;
+    background-color: red;
 }
 #game{
     width: 500px;
