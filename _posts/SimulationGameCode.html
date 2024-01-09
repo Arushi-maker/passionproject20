@@ -13,12 +13,16 @@
         }
 
         canvas {
-            display: block;
+            display: none; /* Hide canvas by default */
             margin: auto;
             border: 1px solid #000;
         }
 
-        #questionnaire, #gameContent {
+        #gameCanvas, #pauseButton, #startButton {
+            display: none;
+        }
+
+        #gameContent {
             display: none;
         }
     </style>
@@ -86,19 +90,51 @@
             <br>    
         </form>
 
-        <button id="submitQuestionnaire">Submit Quiz</button>
+        <button id="submitQuestionnaire" onclick="handleQuestionnaireSubmit()">Submit Quiz</button>
     </div>
 
     <div id="gameContent">
         <h1>Simulation Game Instructions</h1>
         <p>Click on the red squares to score points. Avoid clicking on other colored squares. You have 120 seconds. Good luck!</p>
         <canvas id="gameCanvas" width="800" height="600"></canvas>
+        <button id="pauseButton">Pause Game</button>
     </div>
 
     <script src="game.js"></script>
     <script>
-        // Initialize the game when the window has fully loaded
-        window.addEventListener('load', initializeGame);
+        // Add this function to handle the questionnaire submission
+        function handleQuestionnaireSubmit() {
+            const anxietyForm = document.getElementById("anxietyForm1");
+            const depressionForm = document.getElementById("depressionForm1");
+
+            // Check if all questions are answered
+            if (areAllQuestionsAnswered(anxietyForm) && areAllQuestionsAnswered(depressionForm)) {
+                // Process answers (you can add your logic here)
+
+                // Hide the questionnaire
+                const questionnaire = document.getElementById("questionnaire");
+                questionnaire.style.display = "none";
+
+                // Show the canvas
+                canvas.style.display = "block";
+
+                // Start the game
+                isGameRunning = true;
+
+                // Remove the questionnaire and start the game
+                document.body.removeChild(anxietyForm);
+                document.body.removeChild(depressionForm);
+                requestAnimationFrame(gameLoop);
+            } else {
+                alert("Please answer all questions before starting the game.");
+            }
+        }
+
+        // Add this function to check if all questions are answered
+        function areAllQuestionsAnswered(form) {
+            const answeredQuestions = [...form.elements].filter((el) => el.checked);
+            return answeredQuestions.length === 1; // Assuming there is only one question in each form
+        }
     </script>
 </body>
 </html>
