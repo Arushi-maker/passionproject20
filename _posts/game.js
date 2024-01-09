@@ -11,16 +11,6 @@ let lastMoveTimestamp = 0;
 // Additional variable to track whether the questionnaire is completed
 let isQuestionnaireCompleted = false;
 
-function startGame() {
-  handleQuizSubmission();
-}
-
-function handleQuizSubmission() {
-  document.getElementById("questionnaire").style.display = "none";
-  document.getElementById("gameContent").style.display = "block";
-  initializeGame();
-}
-
 function initializeGame() {
   // Initialize game objects
   objects = [
