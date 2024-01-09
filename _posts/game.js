@@ -137,7 +137,7 @@ function handleClick(event) {
 
   const rect = canvas.getBoundingClientRect();
   const mouseX = event.clientX - rect.left;
-  mouseY = event.clientY - rect.top;
+  const mouseY = event.clientY - rect.top;
 
   for (const object of objects) {
     if (
