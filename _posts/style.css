@@ -9,7 +9,8 @@ body {
     color: #fff; /* Set text color to white for the questionnaire */
 }
 
-canvas {
+#gameCanvas {
+    display: block;
     margin: auto;
     border: 1px solid #fff; /* Set border color to white for the game canvas */
     background-color: #000; /* Set canvas background color to black */
