@@ -42,8 +42,8 @@ function drawQuestionnaire() {
 }
 
 function handleQuestionnaireSubmit() {
-  const anxietyForm = document.getElementById("anxietyForm");
-  const depressionForm = document.getElementById("depressionForm");
+  const anxietyForm = document.getElementById("anxietyForm1");
+  const depressionForm = document.getElementById("depressionForm1");
 
   // Hide the questionnaire
   const questionnaire = document.getElementById("questionnaire");
@@ -91,9 +91,7 @@ function drawObjects() {
 }
 
 function drawScore() {
-  ctx.fillStyle = "#fff"; // Set text color to white
-  ctx.font = "20px Arial";
-  ctx.fillText(`Score: ${score}`, 10, 30);
+  // Omitted the score drawing as per your request
 }
 
 function drawTimer() {
