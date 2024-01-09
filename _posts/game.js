@@ -8,6 +8,9 @@ let isGameRunning = false;
 let lastTimestamp = null;
 let lastMoveTimestamp = 0;
 
+// Additional variable to track whether the questionnaire is completed
+let isQuestionnaireCompleted = false;
+
 function initializeGame() {
   // Initialize game objects
   objects = [
@@ -81,3 +84,111 @@ function areAllQuestionsAnswered(form) {
   const answeredQuestions = [...form.elements].filter((el) => el.checked);
   return answeredQuestions.length === 1; // Assuming there is only one question in each form
 }
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  if (isGameRunning) {
+    drawObjects();
+    drawScore(); // Display the score
+    drawTimer();
+  } else {
+    drawStartScreen();
+  }
+}
+
+function drawObjects() {
+  for (const object of objects) {
+    ctx.fillStyle = object.color;
+    ctx.fillRect(object.x, object.y, object.width, object.height);
+  }
+}
+
+function drawScore() {
+  ctx.fillStyle = "#fff"; // Set text color to white
+  ctx.font = "20px Arial";
+  ctx.fillText(`Score: ${score}`, 10, 30);
+}
+
+function drawTimer() {
+  ctx.fillStyle = "#fff"; // Set text color to white
+  ctx.font = "40px Arial";
+  const timerText = `Time: ${timeLeft.toFixed(1)}s`;
+  const timerWidth = ctx.measureText(timerText).width;
+  ctx.fillText(timerText, canvas.width - timerWidth - 10, 30);
+}
+
+function drawStartScreen() {
+  ctx.fillStyle = "#000";
+  ctx.font = "40px Arial";
+  ctx.fillText("Click 'Start Game' to begin", canvas.width / 2 - 250, canvas.height / 2 - 20);
+
+  const startButtonWidth = 200;
+  const startButtonHeight = 50;
+  const startButtonX = canvas.width / 2 - startButtonWidth / 2;
+  const startButtonY = canvas.height / 2 + 20;
+
+  ctx.fillStyle = "#00FF00";
+  ctx.fillRect(startButtonX, startButtonY, startButtonWidth, startButtonHeight);
+
+  ctx.fillStyle = "#000";
+  ctx.font = "20px Arial";
+  ctx.fillText("Start Game", startButtonX + 50, startButtonY + 30);
+}
+
+function handleClick(event) {
+  if (!isGameRunning) return;
+
+  const rect = canvas.getBoundingClientRect();
+  const mouseX = event.clientX - rect.left;
+  const mouseY = event.clientY - rect.top;
+
+  for (const object of objects) {
+    if (
+      mouseX >= object.x &&
+      mouseX <= object.x + object.width &&
+      mouseY >= object.y &&
+      mouseY <= object.y + object.height
+    ) {
+      if (object.isTarget) {
+        score++;
+      } else {
+        score--;
+      }
+
+      resetObjects();
+      break;
+    }
+  }
+}
+
+function resetObjects() {
+  for (const object of objects) {
+    object.x = Math.random() * (canvas.width - object.width);
+    object.y = Math.random() * (canvas.height - object.height);
+  }
+}
+
+function updateTimer() {
+  const currentTimestamp = performance.now();
+  const elapsedMilliseconds = currentTimestamp - lastTimestamp;
+  const elapsedSeconds = elapsedMilliseconds / 1000;
+
+  timeLeft -= elapsedSeconds;
+  lastTimestamp = currentTimestamp;
+
+  if (timeLeft <= 0) {
+    isGameRunning = false;
+    draw();
+  }
+}
+
+function gameLoop(timestamp) {
+  if (isGameRunning) {
+    updateTimer();
+    draw();
+    requestAnimationFrame(gameLoop);
+  }
+}
+
+canvas.addEventListener("click", handleClick);
