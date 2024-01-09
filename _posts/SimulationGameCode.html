@@ -36,7 +36,7 @@
 
         <!-- Question 1 -->
         <p>Question 1: How often do you feel nervous?</p>
-        <form id="anxietyForm1">
+        <form id="anxietyForm">
             <input type="radio" name="q1" value="Every day"> Every day
             <input type="radio" name="q1" value="Once a week"> Once a week
             <input type="radio" name="q1" value="Every few months"> Every few months
@@ -45,7 +45,7 @@
 
         <!-- Question 2 -->
         <p>Question 2: How frequently do you worry a lot?</p>
-        <form id="anxietyForm2">
+        <form id="anxietyForm">
             <input type="radio" name="q2" value="Every day"> Every day
             <input type="radio" name="q2" value="Once a week"> Once a week
             <input type="radio" name="q2" value="Every few months"> Every few months
@@ -54,7 +54,7 @@
 
         <!-- Question 3 -->
         <p>Question 3: How often are you overly scared (of anything, really)</p>
-        <form id="anxietyForm3">
+        <form id="anxietyForm">
             <input type="radio" name="q3" value="Every day"> Every day
             <input type="radio" name="q3" value="Once a week"> Once a week
             <input type="radio" name="q3" value="Every few months"> Every few months
@@ -65,7 +65,7 @@
 
         <!-- Question 4 -->
         <p>Question 4: How often do you feel extremely down, upset, or sad?</p>
-        <form id="depressionForm1">
+        <form id="depressionForm">
             <input type="radio" name="q4" value="Every day"> Every day
             <input type="radio" name="q4" value="Once a week"> Once a week
             <input type="radio" name="q4" value="Every few months"> Every few months
@@ -73,8 +73,8 @@
         </form>
 
         <!-- Question 5 -->
-        <p>Question 2: When do you tend to have less energy or willingness to do anything?</p>
-        <form id="depressionForm2">
+        <p>Question 5: When do you tend to have less energy or willingness to do anything?</p>
+        <form id="depressionForm">
             <input type="radio" name="q5" value="Every day"> Every day
             <input type="radio" name="q5" value="Once a week"> Once a week
             <input type="radio" name="q5" value="Every few months"> Every few months
@@ -82,8 +82,8 @@
         </form>
 
         <!-- Question 6 -->
-        <p>Question 3: How often do you think negatively about yourself (ex: you only let everyone down)?</p>
-        <form id="depressionForm3">
+        <p>Question 6: How often do you think negatively about yourself (ex: you only let everyone down)?</p>
+        <form id="depressionForm">
             <input type="radio" name="q6" value="Every day"> Every day
             <input type="radio" name="q6" value="Once a week"> Once a week
             <input type="radio" name="q6" value="Every few months"> Every few months
@@ -98,20 +98,9 @@
         <p>Click on the red squares to score points. Avoid clicking on other colored squares. You have 120 seconds. Good luck!</p>
         <canvas id="gameCanvas" width="800" height="600"></canvas>
         <button id="pauseButton">Pause Game</button>
-        <!-- Include the following line if you have a start button -->
-        <button id="startButton">Start Game</button>
+        <button id="startButton" onclick="initializeGame()">Start Game</button>
     </div>
 
     <script src="game.js"></script>
-    <script>
-        function startGame() {
-            document.getElementById("questionnaire").style.display = "none";
-            document.getElementById("gameContent").style.display = "block";
-            document.getElementById("pauseButton").style.display = "block";
-            document.getElementById("startButton").style.display = "none"; 
-            initGame();
-            requestAnimationFrame(gameLoop);
-        }
-    </script>
 </body>
 </html>
