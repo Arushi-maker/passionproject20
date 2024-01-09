@@ -64,7 +64,7 @@
         <p>Depression quiz:</p>
 
         <!-- Question 4 -->
-        <p>Question 1: How often do you feel extremely down, upset, or sad?</p>
+        <p>Question 4: How often do you feel extremely down, upset, or sad?</p>
         <form id="depressionForm1">
             <input type="radio" name="q4" value="Every day"> Every day
             <input type="radio" name="q4" value="Once a week"> Once a week
@@ -98,6 +98,8 @@
         <p>Click on the red squares to score points. Avoid clicking on other colored squares. You have 120 seconds. Good luck!</p>
         <canvas id="gameCanvas" width="800" height="600"></canvas>
         <button id="pauseButton">Pause Game</button>
+        <!-- Include the following line if you have a start button -->
+        <!-- <button id="startButton">Start Game</button> -->
     </div>
 
     <script src="game.js"></script>
@@ -106,7 +108,7 @@
             document.getElementById("questionnaire").style.display = "none";
             document.getElementById("gameContent").style.display = "block";
             document.getElementById("pauseButton").style.display = "block";
-            document.getElementById("startButton").style.display = "none";
+            // document.getElementById("startButton").style.display = "none"; // Uncomment this line if you have a start button
             initGame();
             requestAnimationFrame(gameLoop);
         }
