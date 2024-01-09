@@ -18,11 +18,7 @@
             border: 1px solid #000;
         }
 
-        #gameCanvas, #pauseButton, #startButton {
-            display: none;
-        }
-
-        #gameContent {
+        #questionnaire, #gameContent {
             display: none;
         }
     </style>
@@ -90,47 +86,19 @@
             <br>    
         </form>
 
-        <button id="submitQuestionnaire" onclick="handleQuestionnaireSubmit()">Submit Quiz</button>
+        <button id="submitQuestionnaire">Submit Quiz</button>
     </div>
 
     <div id="gameContent">
         <h1>Simulation Game Instructions</h1>
         <p>Click on the red squares to score points. Avoid clicking on other colored squares. You have 120 seconds. Good luck!</p>
         <canvas id="gameCanvas" width="800" height="600"></canvas>
-        <button id="pauseButton">Pause Game</button>
     </div>
 
     <script src="game.js"></script>
     <script>
-        function handleQuestionnaireSubmit() {
-            const anxietyForm = document.getElementById("anxietyForm");
-            const depressionForm = document.getElementById("depressionForm");
-
-            // Hide the questionnaire
-            const questionnaire = document.getElementById("questionnaire");
-            questionnaire.style.display = "none";
-
-            // Show the canvas
-            canvas.style.display = "block";
-
-            // Start the game
-            isGameRunning = true;
-
-            const anxietyAnswers = [...anxietyForm.elements].filter((el) => el.checked).map((el) => el.value);
-            const depressionAnswers = [...depressionForm.elements].filter((el) => el.checked).map((el) => el.value);
-
-            // Check if all questions are answered
-            if (anxietyAnswers.length === 3 && depressionAnswers.length === 3) {
-                // Process answers (you can add your logic here)
-
-                // Remove the questionnaire and start the game
-                document.body.removeChild(anxietyForm);
-                document.body.removeChild(depressionForm);
-                requestAnimationFrame(gameLoop);
-            } else {
-                alert("Please answer all questions before starting the game.");
-            }
-        }
+        // Initialize the game when the window has fully loaded
+        window.addEventListener('load', initializeGame);
     </script>
 </body>
 </html>
