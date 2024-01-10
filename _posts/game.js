@@ -14,16 +14,6 @@ let isGameRunning = false;
 let lastTimestamp = null;
 let lastMoveTimestamp = 0;
 
-function startCombinedGame() {
-  // Call both start functions
-  startGame();
-  startGame2();
-}
-
-if ("submitQuestionnaire") true; {
-  startGame();
-}
-
 // Additional variable to track whether the questionnaire is completed
 let isQuestionnaireCompleted = false;
 
@@ -205,6 +195,16 @@ function gameLoop(timestamp) {
     draw();
     requestAnimationFrame(gameLoop);
   }
+}
+
+function startCombinedGame() {
+  // Call both start functions
+  startGame();
+  startGame2();
+}
+
+if ("submitQuestionnaire") true; {
+  startGame();
 }
 
 canvas.addEventListener("click", handleClick);
