@@ -9,11 +9,18 @@
             text-align: center;
         }
         #button {
-            width: 200px;
-            height: 200px;
+            width: 30px;
+            height: 30px;
             background-color: red;
             margin: 0 auto;
-            line-height: 200px;
+            line-height: 30px;
+        }
+        #bluesquare {
+            width: 30px;
+            height: 30px;
+            background-color: blue;
+            margin: 0 auto;
+            line-height: 30px;
         }
         #score {
             margin-top: 50px;
@@ -23,11 +30,11 @@
         }
     </style>
     <div id="score">0</div>
-    <div id="button">CLICK ME</div>
+    <div id="bluesquare">CLICK THE RED SQUARE</div>
     <script>
         let counter = 0;
 
-        document.getElementById('button').onclick = () => {
+        document.getElementById('bluesquare').onclick = () => {
             counter = counter + 1;
             document.getElementById('score').innerText = counter;
         };
