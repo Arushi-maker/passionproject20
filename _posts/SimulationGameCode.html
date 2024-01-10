@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulation Game Code</title>
+    <title>Combined Game</title>
     <style>
         body {
             margin: 0;
@@ -26,9 +26,8 @@
             display: none;
         }
     </style>
-    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onload="startCombinedGame()">
     <div id="questionnaire">
         <h1>Mental Health Questionnaire</h1>
 
@@ -94,47 +93,40 @@
     </div>
 
     <div id="gameContent">
-        <h1>Simulation Game Instructions</h1>
-        <p>Click on the red squares to score points. Avoid clicking on other colored squares. You have 120 seconds. Good luck!</p>
+        <h1>Combined Game</h1>
+        <p>Click on the blue "buttons" to make the red square move.</p>
         <canvas id="gameCanvas" width="800" height="600"></canvas>
         <button id="pauseButton">Pause Game</button>
     </div>
 
-    <script src="game.js"></script>
     <script>
-        // Add this function to handle the questionnaire submission
-        function handleQuestionnaireSubmit() {
-            const anxietyForm = document.getElementById("anxietyForm1");
-            const depressionForm = document.getElementById("depressionForm1");
+        // Game 1 code
+        var myGamePiece;
+        var myUpBtn;
+        var myDownBtn;
+        var myLeftBtn;
+        var myRightBtn;
 
-            // Check if all questions are answered
-            if (areAllQuestionsAnswered(anxietyForm) && areAllQuestionsAnswered(depressionForm)) {
-                // Process answers (you can add your logic here)
+        // ...
 
-                // Hide the questionnaire
-                const questionnaire = document.getElementById("questionnaire");
-                questionnaire.style.display = "none";
+        // Game 2 code
+        var canvas = document.getElementById("gameCanvas");
+        var ctx = canvas.getContext("2d");
 
-                // Show the canvas
-                canvas.style.display = "block";
+        var objects = [];
+        var score = 0;
+        var timeLeft = 120;
+        var isGameRunning = false;
+        var lastTimestamp = null;
+        var lastMoveTimestamp = 0;
 
-                // Start the game
-                isGameRunning = true;
-
-                // Remove the questionnaire and start the game
-                document.body.removeChild(anxietyForm);
-                document.body.removeChild(depressionForm);
-                requestAnimationFrame(gameLoop);
-            } else {
-                alert("Please answer all questions before starting the game.");
-            }
+        function startCombinedGame() {
+            // Call both start functions
+            startGame();
+            startGame2();
         }
 
-        // Add this function to check if all questions are answered
-        function areAllQuestionsAnswered(form) {
-            const answeredQuestions = [...form.elements].filter((el) => el.checked);
-            return answeredQuestions.length === 1; // Assuming there is only one question in each form
-        }
+        // ...
     </script>
 </body>
 </html>
