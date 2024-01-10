@@ -1,17 +1,17 @@
 body {
     margin: 0;
     overflow: hidden;
-    background-color: #000; /* Set the overall background color to black */
+    background-color: #fff; /* Set the overall background color to black */
     color: #fff; /* Set default text color to white */
 }
 
 #questionnaire {
-    color: #fff; /* Set text color to white for the questionnaire */
+    color: #000; /* Set text color to white for the questionnaire */
 }
 
 #gameCanvas {
     display: block;
     margin: auto;
-    border: 1px solid #fff; /* Set border color to white for the game canvas */
-    background-color: #000; /* Set canvas background color to black */
+    border: 1px solid #000; /* Set border color to white for the game canvas */
+    background-color: #fff; /* Set canvas background color to black */
 }
