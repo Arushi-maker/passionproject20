@@ -27,76 +27,13 @@
         }
     </style>
 </head>
-<body onload="startCombinedGame()">
+<body>
     <div id="questionnaire">
         <h1>Mental Health Questionnaire</h1>
 
         <p>Anxiety quiz (High functioning and low functioning until I can make two different ones):</p>
 
-        <!-- Question 1 -->
-        <p>Question 1: How often do you feel nervous?</p>
-        <form id="anxietyForm1">
-            <input type="radio" name="q1" value="Every day"> Every day
-            <input type="radio" name="q1" value="Once a week"> Once a week
-            <input type="radio" name="q1" value="Every few months"> Every few months
-            <br>
-        </form>
-
-        <!-- Question 2 -->
-        <p>Question 2: How frequently do you worry a lot?</p>
-        <form id="anxietyForm2">
-            <input type="radio" name="q2" value="Every day"> Every day
-            <input type="radio" name="q2" value="Once a week"> Once a week
-            <input type="radio" name="q2" value="Every few months"> Every few months
-            <br>
-        </form>
-
-        <!-- Question 3 -->
-        <p>Question 3: How often are you overly scared (of anything, really)</p>
-        <form id="anxietyForm3">
-            <input type="radio" name="q3" value="Every day"> Every day
-            <input type="radio" name="q3" value="Once a week"> Once a week
-            <input type="radio" name="q3" value="Every few months"> Every few months
-            <br>
-        </form>
-
-        <!-- Question 4 -->
-        <p>Question 4: How well do you perform in school, work, home, or any other place?</p>
-        <form id="anxietyForm4">
-            <input type="radio" name="q4" value="Exceptionally well"> Exceptionally well
-            <input type="radio" name="q4" value="Mostly well"> Mostly well
-            <input type="radio" name="q4" value="Not able to focus"> Not able to focus
-            <br>
-        </form>
-
-        <p>Depression quiz:</p>
-
-        <!-- Question 5 -->
-        <p>Question 1: How often do you feel extremely down, upset, or sad?</p>
-        <form id="depressionForm1">
-            <input type="radio" name="q5" value="Every day"> Every day
-            <input type="radio" name="q5" value="Once a week"> Once a week
-            <input type="radio" name="q5" value="Every few months"> Every few months
-            <br>
-        </form>
-
-        <!-- Question 6 -->
-        <p>Question 2: When do you tend to have less energy or willingness to do anything?</p>
-        <form id="depressionForm2">
-            <input type="radio" name="q6" value="Every day"> Every day
-            <input type="radio" name="q6" value="Once a week"> Once a week
-            <input type="radio" name="q6" value="Every few months"> Every few months
-            <br>
-        </form>
-
-        <!-- Question 7 -->
-        <p>Question 3: How often do you think negatively about yourself (ex: you only let everyone down)?</p>
-        <form id="depressionForm3">
-            <input type="radio" name="q7" value="Every day"> Every day
-            <input type="radio" name="q7" value="Once a week"> Once a week
-            <input type="radio" name="q7" value="Every few months"> Every few months
-            <br>    
-        </form>
+        <!-- Your questionnaire forms go here -->
 
         <button id="submitQuestionnaire" onclick="handleQuestionnaireSubmit()">Submit Quiz</button>
     </div>
@@ -109,5 +46,16 @@
     </div>
 
     <script src="game.js"></script>
+    <script>
+        // Define the startCombinedGame function
+        function startCombinedGame() {
+            // Assuming you want to start the game when the body loads
+            initializeGame();
+            handleGameLogic();
+        }
+
+        // Call the startCombinedGame function on body onload
+        window.onload = startCombinedGame;
+    </script>
 </body>
 </html>
