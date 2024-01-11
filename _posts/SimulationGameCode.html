@@ -33,7 +33,70 @@
 
         <p>Anxiety quiz (High functioning and low functioning until I can make two different ones):</p>
 
-        <!-- Your questionnaire forms go here -->
+        <!-- Question 1 -->
+        <p>Question 1: How often do you feel nervous?</p>
+        <form id="anxietyForm1">
+            <input type="radio" name="q1" value="Every day"> Every day
+            <input type="radio" name="q1" value="Once a week"> Once a week
+            <input type="radio" name="q1" value="Every few months"> Every few months
+            <br>
+        </form>
+
+        <!-- Question 2 -->
+        <p>Question 2: How frequently do you worry a lot?</p>
+        <form id="anxietyForm2">
+            <input type="radio" name="q2" value="Every day"> Every day
+            <input type="radio" name="q2" value="Once a week"> Once a week
+            <input type="radio" name="q2" value="Every few months"> Every few months
+            <br>
+        </form>
+
+        <!-- Question 3 -->
+        <p>Question 3: How often are you overly scared (of anything, really)</p>
+        <form id="anxietyForm3">
+            <input type="radio" name="q3" value="Every day"> Every day
+            <input type="radio" name="q3" value="Once a week"> Once a week
+            <input type="radio" name="q3" value="Every few months"> Every few months
+            <br>
+        </form>
+
+        <!-- Question 4 -->
+        <p>Question 4: How well do you perform in school, work, home, or any other place?</p>
+        <form id="anxietyForm4">
+            <input type="radio" name="q4" value="Exceptionally well"> Exceptionally well
+            <input type="radio" name="q4" value="Mostly well"> Mostly well
+            <input type="radio" name="q4" value="Not able to focus"> Not able to focus
+            <br>
+        </form>
+
+        <p>Depression quiz:</p>
+
+        <!-- Question 5 -->
+        <p>Question 1: How often do you feel extremely down, upset, or sad?</p>
+        <form id="depressionForm1">
+            <input type="radio" name="q5" value="Every day"> Every day
+            <input type="radio" name="q5" value="Once a week"> Once a week
+            <input type="radio" name="q5" value="Every few months"> Every few months
+            <br>
+        </form>
+
+        <!-- Question 6 -->
+        <p>Question 2: When do you tend to have less energy or willingness to do anything?</p>
+        <form id="depressionForm2">
+            <input type="radio" name="q6" value="Every day"> Every day
+            <input type="radio" name="q6" value="Once a week"> Once a week
+            <input type="radio" name="q6" value="Every few months"> Every few months
+            <br>
+        </form>
+
+        <!-- Question 7 -->
+        <p>Question 3: How often do you think negatively about yourself (ex: you only let everyone down)?</p>
+        <form id="depressionForm3">
+            <input type="radio" name="q7" value="Every day"> Every day
+            <input type="radio" name="q7" value="Once a week"> Once a week
+            <input type="radio" name="q7" value="Every few months"> Every few months
+            <br>    
+        </form>
 
         <button id="submitQuestionnaire" onclick="handleQuestionnaireSubmit()">Submit Quiz</button>
     </div>
@@ -47,15 +110,220 @@
 
     <script src="game.js"></script>
     <script>
-        // Define the startCombinedGame function
+        var myGamePiece;
+        var myUpBtn;
+        var myDownBtn;
+        var myLeftBtn;
+        var myRightBtn;
+
+        let objects = [];
+        let score = 0;
+        let timeLeft = 120;
+        let isGameRunning = false;
+        let lastTimestamp = null;
+        let lastMoveTimestamp = 0;
+
+        // Additional variable to track whether the questionnaire is completed
+        let isQuestionnaireCompleted = false;
+
+        function initializeGame() {
+            // Initialize game objects
+            objects = [
+                { x: 100, y: 100, width: 50, height: 50, color: "#FF0000", isTarget: true },
+                { x: 200, y: 200, width: 50, height: 50, color: "#00FF00", isTarget: false },
+                { x: 300, y: 300, width: 50, height: 50, color: "#0000FF", isTarget: false },
+                { x: 400, y: 400, width: 50, height: 50, color: "#FFA500", isTarget: true }, // Orange square
+                { x: 500, y: 500, width: 50, height: 50, color: "#FFFF00", isTarget: false }, // Yellow square
+                { x: 600, y: 200, width: 50, height: 50, color: "#800080", isTarget: false }, // Purple square
+            ];
+
+            score = 0;
+            timeLeft = 120;
+            isGameRunning = false;
+            lastTimestamp = null;
+            lastMoveTimestamp = 0;
+        }
+
+        // Add the following function to handle the game logic
+        function handleGameLogic() {
+            if (isGameRunning) {
+                updateTimer();
+                draw();
+                requestAnimationFrame(gameLoop);
+            }
+        }
+
+        // Start the game by initializing it
+        initializeGame();
+        handleGameLogic();
+
+        function handleQuestionnaireSubmit() {
+            const anxietyForm = document.getElementById("anxietyForm1");
+            const depressionForm = document.getElementById("depressionForm1");
+
+            // Check if all questions are answered
+            if (areAllQuestionsAnswered(anxietyForm) && areAllQuestionsAnswered(depressionForm)) {
+                // Process answers (you can add your logic here)
+
+                // Hide the questionnaire
+                const questionnaire = document.getElementById("questionnaire");
+                questionnaire.style.display = "none";
+
+                // Show the canvas
+                const canvas = document.getElementById("gameCanvas");
+                canvas.style.display = "block";
+
+                // Start the game
+                isGameRunning = true;
+
+                // Remove the questionnaire and start the game
+                document.body.removeChild(anxietyForm);
+                document.body.removeChild(depressionForm);
+                requestAnimationFrame(gameLoop);
+            } else {
+                alert("Please answer all questions before starting the game.");
+            }
+        }
+
+        function areAllQuestionsAnswered(form) {
+            const answeredQuestions = [...form.elements].filter((el) => el.checked);
+            return answeredQuestions.length === 1; // Assuming there is only one question in each form
+        }
+
+        function draw() {
+            const canvas = document.getElementById("gameCanvas");
+            const ctx = canvas.getContext("2d");
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (isGameRunning) {
+                drawObjects();
+                drawScore(); // Display the score
+                drawTimer();
+            } else {
+                drawStartScreen();
+            }
+        }
+
+        function drawObjects() {
+            const canvas = document.getElementById("gameCanvas");
+            const ctx = canvas.getContext("2d");
+
+            for (const object of objects) {
+                ctx.fillStyle = object.color;
+                ctx.fillRect(object.x, object.y, object.width, object.height);
+            }
+        }
+
+        function drawScore() {
+            const canvas = document.getElementById("gameCanvas");
+            const ctx = canvas.getContext("2d");
+
+            ctx.fillStyle = "#fff"; // Set text color to white
+            ctx.font = "20px Arial";
+            ctx.fillText(`Score: ${score}`, 10, 30);
+        }
+
+        function drawTimer() {
+            const canvas = document.getElementById("gameCanvas");
+            const ctx = canvas.getContext("2d");
+
+            ctx.fillStyle = "#fff"; // Set text color to white
+            ctx.font = "40px Arial";
+            const timerText = `Time: ${timeLeft.toFixed(1)}s`;
+            const timerWidth = ctx.measureText(timerText).width;
+            ctx.fillText(timerText, canvas.width - timerWidth - 10, 30);
+        }
+
+        function drawStartScreen() {
+            const canvas = document.getElementById("gameCanvas");
+            const ctx = canvas.getContext("2d");
+
+            ctx.fillStyle = "#000";
+            ctx.font = "40px Arial";
+            ctx.fillText("Click 'Start Game' to begin", canvas.width / 2 - 250, canvas.height / 2 - 20);
+
+            const startButtonWidth = 200;
+            const startButtonHeight = 50;
+            const startButtonX = canvas.width / 2 - startButtonWidth / 2;
+            const startButtonY = canvas.height / 2 + 20;
+
+            ctx.fillStyle = "#00FF00";
+            ctx.fillRect(startButtonX, startButtonY, startButtonWidth, startButtonHeight);
+
+            ctx.fillStyle = "#000";
+            ctx.font = "20px Arial";
+            ctx.fillText("Start Game", startButtonX + 50, startButtonY + 30);
+        }
+
+        function handleClick(event) {
+            if (!isGameRunning) return;
+
+            const canvas = document.getElementById("gameCanvas");
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = event.clientX - rect.left;
+            const mouseY = event.clientY - rect.top;
+
+            for (const object of objects) {
+                if (
+                    mouseX >= object.x &&
+                    mouseX <= object.x + object.width &&
+                    mouseY >= object.y &&
+                    mouseY <= object.y + object.height
+                ) {
+                    if (object.isTarget) {
+                        score++;
+                    } else {
+                        score--;
+                    }
+
+                    resetObjects();
+                    break;
+                }
+            }
+        }
+
+        function resetObjects() {
+            for (const object of objects) {
+                object.x = Math.random() * (canvas.width - object.width);
+                object.y = Math.random() * (canvas.height - object.height);
+            }
+        }
+
+        function updateTimer() {
+            const currentTimestamp = performance.now();
+            const elapsedMilliseconds = currentTimestamp - lastTimestamp;
+            const elapsedSeconds = elapsedMilliseconds / 1000;
+
+            timeLeft -= elapsedSeconds;
+            lastTimestamp = currentTimestamp;
+
+            if (timeLeft <= 0) {
+                isGameRunning = false;
+                draw();
+            }
+        }
+
+        function gameLoop(timestamp) {
+            if (isGameRunning) {
+                updateTimer();
+                draw();
+                requestAnimationFrame(gameLoop);
+            }
+        }
+
         function startCombinedGame() {
-            // Assuming you want to start the game when the body loads
+            // Call both start functions
             initializeGame();
             handleGameLogic();
         }
 
         // Call the startCombinedGame function on body onload
         window.onload = startCombinedGame;
+
+        // Add event listener for canvas click
+        const canvas = document.getElementById("gameCanvas");
+        canvas.addEventListener("click", handleClick);
     </script>
 </body>
 </html>
