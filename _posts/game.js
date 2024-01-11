@@ -191,13 +191,13 @@ function gameLoop(timestamp) {
 
 function startCombinedGame() {
   // Call both start functions
-  startGame();
-  startGame2();
+  initializeGame();
+  handleGameLogic();
 }
 
-if ("submitQuestionnaire") true; {
-  startGame();
+// Corrected code:
+if (true) {
+  startCombinedGame();
 }
 
 canvas.addEventListener("click", handleClick);
-
