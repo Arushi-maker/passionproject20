@@ -1,12 +1,6 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-var myGamePiece;
-var myUpBtn;
-var myDownBtn;
-var myLeftBtn;
-var myRightBtn;
-
 let objects = [];
 let score = 0;
 let timeLeft = 120;
@@ -33,9 +27,6 @@ function initializeGame() {
   isGameRunning = false;
   lastTimestamp = null;
   lastMoveTimestamp = 0;
-
-  // Draw the questionnaire
-  drawQuestionnaire();
 }
 
 // Add the following function to handle the game logic
@@ -47,10 +38,7 @@ function handleGameLogic() {
   }
 }
 
-// Start the game by initializing it
-initializeGame();
-handleGameLogic();
-
+// Add this function to handle the questionnaire submission
 function handleQuestionnaireSubmit() {
   const anxietyForm = document.getElementById("anxietyForm1");
   const depressionForm = document.getElementById("depressionForm1");
@@ -78,6 +66,7 @@ function handleQuestionnaireSubmit() {
   }
 }
 
+// Add this function to check if all questions are answered
 function areAllQuestionsAnswered(form) {
   const answeredQuestions = [...form.elements].filter((el) => el.checked);
   return answeredQuestions.length === 1; // Assuming there is only one question in each form
@@ -187,17 +176,6 @@ function gameLoop(timestamp) {
     draw();
     requestAnimationFrame(gameLoop);
   }
-}
-
-function startCombinedGame() {
-  // Call both start functions
-  initializeGame();
-  handleGameLogic();
-}
-
-// Corrected code:
-if (true) {
-  startCombinedGame();
 }
 
 canvas.addEventListener("click", handleClick);
