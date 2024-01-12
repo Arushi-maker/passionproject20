@@ -34,7 +34,7 @@
         <form id="anxietyForm1">
             <input type="radio" name="q1" value="Every day"> Every day
             <input type="radio" name="q1" value="Once a week"> Once a week
-            <input type="radio" name="q1" value="Every few months"> Not at all
+            <input type="radio" name="q1" value="Every few months"> Every few months
             <br>
         </form>
 
@@ -43,7 +43,7 @@
         <form id="anxietyForm2">
             <input type="radio" name="q2" value="Every day"> Every day
             <input type="radio" name="q2" value="Once a week"> Once a week
-            <input type="radio" name="q2" value="Every few months"> Not at all
+            <input type="radio" name="q2" value="Every few months"> Every few months
             <br>
         </form>
 
@@ -52,7 +52,7 @@
         <form id="anxietyForm3">
             <input type="radio" name="q3" value="Every day"> Every day
             <input type="radio" name="q3" value="Once a week"> Once a week
-            <input type="radio" name="q3" value="Every few months"> Not at all
+            <input type="radio" name="q3" value="Every few months"> Every few months
             <br>
         </form>
 
@@ -148,19 +148,19 @@
         handleGameLogic();
 
         function handleQuestionnaireSubmit() {
-            const anxietyForm = document.getElementById("anxietyForm1");
-            const depressionForm = document.getElementById("depressionForm1");
+            var anxietyForm = document.getElementById("anxietyForm1");
+            var depressionForm = document.getElementById("depressionForm1");
 
             // Check if all questions are answered
             if (areAllQuestionsAnswered(anxietyForm) && areAllQuestionsAnswered(depressionForm)) {
                 // Process answers (you can add your logic here)
 
                 // Hide the questionnaire
-                const questionnaire = document.getElementById("questionnaire");
+                var questionnaire = document.getElementById("questionnaire");
                 questionnaire.style.display = "none";
 
                 // Show the canvas
-                const canvas = document.getElementById("gameCanvas");
+                var canvas = document.getElementById("gameCanvas");
                 canvas.style.display = "block";
 
                 // Start the game
@@ -176,13 +176,13 @@
         }
 
         function areAllQuestionsAnswered(form) {
-            const answeredQuestions = [...form.elements].filter((el) => el.checked);
+            var answeredQuestions = [...form.elements].filter((el) => el.checked);
             return answeredQuestions.length === 1; // Assuming there is only one question in each form
         }
 
         function draw() {
-            const canvas = document.getElementById("gameCanvas");
-            const ctx = canvas.getContext("2d");
+            var canvas = document.getElementById("gameCanvas");
+            var ctx = canvas.getContext("2d");
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -196,8 +196,8 @@
         }
 
         function drawObjects() {
-            const canvas = document.getElementById("gameCanvas");
-            const ctx = canvas.getContext("2d");
+            var canvas = document.getElementById("gameCanvas");
+            var ctx = canvas.getContext("2d");
 
             for (const object of objects) {
                 ctx.fillStyle = object.color;
@@ -206,8 +206,8 @@
         }
 
         function drawScore() {
-            const canvas = document.getElementById("gameCanvas");
-            const ctx = canvas.getContext("2d");
+            var canvas = document.getElementById("gameCanvas");
+            var ctx = canvas.getContext("2d");
 
             ctx.fillStyle = "#fff"; // Set text color to white
             ctx.font = "20px Arial";
@@ -215,28 +215,28 @@
         }
 
         function drawTimer() {
-            const canvas = document.getElementById("gameCanvas");
-            const ctx = canvas.getContext("2d");
+            var canvas = document.getElementById("gameCanvas");
+            var ctx = canvas.getContext("2d");
 
             ctx.fillStyle = "#fff"; // Set text color to white
             ctx.font = "40px Arial";
-            const timerText = `Time: ${timeLeft.toFixed(1)}s`;
-            const timerWidth = ctx.measureText(timerText).width;
+            var timerText = `Time: ${timeLeft.toFixed(1)}s`;
+            var timerWidth = ctx.measureText(timerText).width;
             ctx.fillText(timerText, canvas.width - timerWidth - 10, 30);
         }
 
         function drawStartScreen() {
-            const canvas = document.getElementById("gameCanvas");
-            const ctx = canvas.getContext("2d");
+            var canvas = document.getElementById("gameCanvas");
+            var ctx = canvas.getContext("2d");
 
             ctx.fillStyle = "#000";
             ctx.font = "40px Arial";
             ctx.fillText("Click 'Start Game' to begin", canvas.width / 2 - 250, canvas.height / 2 - 20);
 
-            const startButtonWidth = 200;
-            const startButtonHeight = 50;
-            const startButtonX = canvas.width / 2 - startButtonWidth / 2;
-            const startButtonY = canvas.height / 2 + 20;
+            var startButtonWidth = 200;
+            var startButtonHeight = 50;
+            var startButtonX = canvas.width / 2 - startButtonWidth / 2;
+            var startButtonY = canvas.height / 2 + 20;
 
             ctx.fillStyle = "#00FF00";
             ctx.fillRect(startButtonX, startButtonY, startButtonWidth, startButtonHeight);
@@ -249,10 +249,10 @@
         function handleClick(event) {
             if (!isGameRunning) return;
 
-            const canvas = document.getElementById("gameCanvas");
-            const rect = canvas.getBoundingClientRect();
-            const mouseX = event.clientX - rect.left;
-            const mouseY = event.clientY - rect.top;
+            var canvas = document.getElementById("gameCanvas");
+            var rect = canvas.getBoundingClientRect();
+            var mouseX = event.clientX - rect.left;
+            var mouseY = event.clientY - rect.top;
 
             for (const object of objects) {
                 if (
@@ -281,9 +281,9 @@
         }
 
         function updateTimer() {
-            const currentTimestamp = performance.now();
-            const elapsedMilliseconds = currentTimestamp - lastTimestamp;
-            const elapsedSeconds = elapsedMilliseconds / 1000;
+            var currentTimestamp = performance.now();
+            var elapsedMilliseconds = currentTimestamp - lastTimestamp;
+            var elapsedSeconds = elapsedMilliseconds / 1000;
 
             timeLeft -= elapsedSeconds;
             lastTimestamp = currentTimestamp;
@@ -303,9 +303,9 @@
         }
 
         // Call the startCombinedGame function on body onload
-        window.onload = function() {
+        window.onload = function () {
             // Add event listener for canvas click
-            const canvas = document.getElementById("gameCanvas");
+            var canvas = document.getElementById("gameCanvas");
             canvas.addEventListener("click", handleClick);
         };
     </script>
