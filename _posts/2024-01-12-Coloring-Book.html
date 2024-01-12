@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Coloring Page</title>
+    <style>
+        #coloringPage {
+            width: 600px;
+            height: 400px;
+            border: 2px solid #000;
+            direction: rtl;
+        }
+    </style>
+</head>
+<body>
+    <h1>Online Coloring Page</h1>
+    <div id="coloringPage" onclick="color(event)"></div>
+
+    <script>
+        // Define colors
+        const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'];
+
+        // Function to change color on click
+        function color(event) {
+            const coloringPage = document.getElementById('coloringPage');
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Check if the clicked element is the coloring page
+            if (event.target === coloringPage) {
+                event.target.style.backgroundColor = randomColor;
+            }
+        }
+    </script>
+</body>
+</html>
