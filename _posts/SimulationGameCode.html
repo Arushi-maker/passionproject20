@@ -22,6 +22,32 @@
         #gameContent {
             display: none;
         }
+        #score {
+            margin-top: 50px;
+            font-size: 60px;
+            font-weight: bold;
+            color: black;
+        }
+        #button,
+        #bluesquare,
+        #yellowsquare {
+            width: 100px;
+            height: 100px;
+            font: arial, small-caps;
+            font-size: 15px;
+            line-height: 30px;
+            margin: 0 auto;
+        }
+        #button {
+            background-color: red;
+        }
+        #bluesquare {
+            background-color: blue;
+        }
+
+        #yellowsquare {
+            background-color: yellow;
+        }
     </style>
 </head>
 <body>
@@ -100,58 +126,43 @@
 
     <div id="gameContent">
         <h1>Clicker Game</h1>
-        <style>
-            body {
-            background-color: white;
-            font-size: 30px;
-            text-align: left;
-        }
-        #button {
-            width: 100px;
-            height: 100px;
-            background-color: red;
-            font: arial, small-caps;
-            font-size: 15px;
-            line-height: 30px;
-            margin: 0 auto;
-        }
-        #bluesquare {
-            width: 100px;
-            height: 100px;
-            background-color: blue;
-            font: arial, small-caps;
-            font-size: 15px;
-            line-height: 30px;
-            margin: 0 auto;
-        }
-
-        #yellowsquare {
-            width: 100px;
-            height: 100px;
-            background-color: yellow;
-            font: arial, small-caps;
-            font-size: 15px;
-            line-height: 30px;
-            margin: 0 auto;
-        }
-
-        #score {
-            margin-top: 50px;
-            font-size: 60px;
-            font-weight: bold;
-            color: black;
-        }
-        </style>
         <div id="score">0</div>
         <div id="button">GREEN</div>
         <div id="bluesquare">CLICK THE RED SQUARE</div>
         <div id="yellowsquare">RED</div>
         <script>
             let counter = 0;
+            let isGameRunning = false;
+
+            function handleQuestionnaireSubmit() {
+                var anxietyForm = document.getElementById("anxietyForm1");
+                var depressionForm = document.getElementById("depressionForm1");
+                
+                if (areAllQuestionsAnswered(anxietyForm) && areAllQuestionsAnswered(depressionForm)) {
+
+                    var questionnaire = document.getElementById("questionnaire");
+                    questionnaire.style.display = "none";
+                
+                    var gameContent = document.getElementById("gameContent");
+                    gameContent.style.display = "block";
+
+                    isGameRunning = true;
+                    requestAnimationFrame(gameLoop);
+                } else {
+                    alert("Please answer all questions before starting the game.");
+                }
+            }
+
+            function areAllQuestionsAnswered(form) {
+                var answeredQuestions = [...form.elements].filter((el) => el.checked);
+                return answeredQuestions.length === 1;
+            }
 
             document.getElementById('button').onclick = () => {
-            counter = counter + 1;
-            document.getElementById('score').innerText = counter;
+                if (isGameRunning) {
+                    counter = counter + 1;
+                    document.getElementById('score').innerText = counter;
+                }            
             };
         </script>
     </div>
