@@ -132,6 +132,7 @@
         <div id="button">GREEN</div>
         <div id="bluesquare">CLICK THE RED SQUARE</div>
         <div id="yellowsquare">RED</div>
+        <div id="timer" style="font-size: 20px; color: black; position: absolute; top: 10px; right: 10px;"></div>
         <script>
             let counter = 0;
             let isGameRunning = false;
@@ -176,13 +177,8 @@
             }            
             
             function drawTimer() {
-                var canvas = document.getElementById("gameCanvas");
-                var ctx = canvas.getContext("2d");
-
-                ctx.fillStyle = "#fff";
-                ctx.font = "20px Arial";
-                var timerWidth = ctx.measureText(timerText).width;
-                ctx.fillText(timerText, canvas.width - timerWidth - 10, 30);
+                var timerElement = document.getElementById("timer");
+                timerElement.innerText = 'Time: ${currentTime}s';
             }
 
             function endGame() {
