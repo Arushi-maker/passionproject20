@@ -141,19 +141,19 @@
             font-weight: bold;
             color: black;
         }
-    </style>
-    <div id="score">0</div>
-    <div id="button">GREEN</div>
-    <div id="bluesquare">CLICK THE RED SQUARE</div>
-    <div id="yellowsquare">RED</div>
-    <script>
-        let counter = 0;
+        </style>
+        <div id="score">0</div>
+        <div id="button">GREEN</div>
+        <div id="bluesquare">CLICK THE RED SQUARE</div>
+        <div id="yellowsquare">RED</div>
+        <script>
+            let counter = 0;
 
-        document.getElementById('button').onclick = () => {
+            document.getElementById('button').onclick = () => {
             counter = counter + 1;
             document.getElementById('score').innerText = counter;
-        };
-    </script>
+            };
+        </script>
     </div>
 </body>
 </html>
