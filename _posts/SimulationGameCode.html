@@ -121,6 +121,9 @@
         // Additional variable to track whether the questionnaire is completed
         var isQuestionnaireCompleted = false;
 
+        // Additional variable to track whether the game is initialized
+        var isGameInitialized = false;
+
         function initializeGame() {
             // Initialize game objects
             objects = [
@@ -141,7 +144,7 @@
 
         // Add the following function to handle the game logic
         function handleGameLogic() {
-            if (isGameRunning) {
+            if (isGameRunning && isGameInitialized) {
                 updateTimer();
                 draw();
                 requestAnimationFrame(gameLoop);
@@ -174,6 +177,11 @@
                 // Remove the questionnaire and start the game
                 document.body.removeChild(anxietyForm);
                 document.body.removeChild(depressionForm);
+
+                // Set the flag to true when the questionnaire is submitted
+                isGameInitialized = true;
+
+                // Start the game loop only after the questionnaire is submitted
                 requestAnimationFrame(gameLoop);
             } else {
                 alert("Please answer all questions before starting the game.");
@@ -309,9 +317,11 @@
 
         // Call the startCombinedGame function on body onload
         window.onload = function () {
-            // Add event listener for canvas click
             var canvas = document.getElementById("gameCanvas");
             canvas.addEventListener("click", handleClick);
+
+            initializeGame();
+            handleGameLogic();
         };
     </script>
 </body>
