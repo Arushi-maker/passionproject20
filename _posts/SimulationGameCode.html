@@ -151,7 +151,6 @@
                     gameContent.style.display = "block";
 
                     isGameRunning = true;
-                    requestAnimationFrame(gameLoop);
                     updateTimer();
                 } else {
                     alert("Please answer all questions before starting the game.");
@@ -172,7 +171,7 @@
                     }
 
                     drawTimer();
-                    requestAnimationFrame(updateTimer);
+                    setTimeout(updateTimer, 1000);
                 }
             }            
             
