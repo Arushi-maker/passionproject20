@@ -34,7 +34,7 @@
         #yellowsquare {
             width: 100px;
             height: 100px;
-            font: georgia;
+            font: arial, small-caps;
             font-size: 20px;
             line-height: 30px;
             margin: 0 auto;
@@ -135,6 +135,7 @@
         <script>
             let counter = 0;
             let isGameRunning = false;
+            let currentTime = 120;
 
             function handleQuestionnaireSubmit() {
                 var anxietyForm = document.getElementById("anxietyForm1");
@@ -150,6 +151,7 @@
 
                     isGameRunning = true;
                     requestAnimationFrame(gameLoop);
+                    updateTimer();
                 } else {
                     alert("Please answer all questions before starting the game.");
                 }
@@ -158,6 +160,34 @@
             function areAllQuestionsAnswered(form) {
                 var answeredQuestions = [...form.elements].filter((el) => el.checked);
                 return answeredQuestions.length === 1;
+            }
+
+            function updateTimer() {
+                if (isGameRunning) {
+                    currentTime -= 1;
+                
+                    if (currentTime <= 0) {
+                        endGame();
+                    }
+
+                    drawTimer();
+                    requestAnimationFrame(updateTimer);
+                }
+            }            
+            
+            function drawTimer() {
+                var canvas = document.getElementById("gameCanvas");
+                var ctx = canvas.getContext("2d");
+
+                ctx.fillStyle = "#fff";
+                ctx.font = "20px Arial";
+                var timerWidth = ctx.measureText(timerText).width;
+                ctx.fillText(timerText, canvas.width - timerWidth - 10, 30);
+            }
+
+            function endGame() {
+                isGameRunning = false;
+                alert("Game Over! You final score is: " + counter);
             }
 
             document.getElementById('button').onclick = () => {
