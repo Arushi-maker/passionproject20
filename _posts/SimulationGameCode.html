@@ -31,9 +31,10 @@
         }
         #button,
         #bluesquare,
-        #yellowsquare {
-            width: 100px;
-            height: 100px;
+        #yellowsquare,
+        #greensquare {
+            width: 120px;
+            height: 120px;
             font: arial, small-caps;
             font-size: 20px;
             line-height: 30px;
@@ -49,6 +50,10 @@
 
         #yellowsquare {
             background-color: yellow;
+        }
+
+        #greensquare {
+            background-color: green;
         }
     </style>
 </head>
@@ -133,6 +138,7 @@
         <div id="button">GREEN</div>
         <div id="bluesquare">CLICK THE RED SQUARE</div>
         <div id="yellowsquare">RED</div>
+        <div id="greensquare">BLUE</div>
         <div id="timer" style="font-size: 50px; color: black; position: absolute; top: 10px; right: 10px;"></div>
         <script>
             let counter = 0;
