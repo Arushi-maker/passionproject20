@@ -182,6 +182,13 @@
                     moveSquare('yellowsquare');
                     moveSquare('redsquare');
                 }, 2000);
+
+                document.getElementById('redsquare').addEventListener('click', () => {
+                    if (isGameRunning) {
+                        counter = counter + 1;
+                        document.getElementById('score').innerText = counter;
+                    }            
+                });
             }
             
             function areAllQuestionsAnswered(form) {
@@ -211,13 +218,6 @@
                 isGameRunning = false;
                 alert("Game Over! You final score is: " + counter);
             }
-
-            document.getElementById('redsquare').onclick = () => {
-                if (isGameRunning) {
-                    counter = counter + 1;
-                    document.getElementById('score').innerText = counter;
-                }            
-            };
         </script>
     </div>
 </body>
