@@ -170,11 +170,11 @@
                     moveSquare('bluesquare');
                     moveSquare('greensquare');
                     moveSquare('yellowsquare');
-                    moveSquare('button');
+                    moveSquare('redsquare');
                 }, 2000);
             }
 
-            function moveSqaure(squareId) {
+            function moveSquare(squareId) {
                 const square = document.getElementById(squareId);
                 square.style.left = getRandomPosition();
                 square.style.top = getRandomPosition();
