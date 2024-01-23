@@ -166,12 +166,18 @@
             }
 
             function moveSquares() {
-                document.getElementById('bluesquare').style.left = getRandomPosition();
-                document.getElementById('bluesquare').style.top = getRandomPosition();
-                document.getElementById('greensquare').style.left = getRandomPosition();
-                document.getElementById('greensquare').style.top = getRandomPosition();
+                setInterval(() => {
+                    document.getElementById('bluesquare').style.left = getRandomPosition();
+                    document.getElementById('bluesquare').style.top = getRandomPosition();
+                    document.getElementById('greensquare').style.left = getRandomPosition();
+                    document.getElementById('greensquare').style.top = getRandomPosition();
+                    document.getElementById('yellowsquare').style.left = getRandomPosition();
+                    document.getElementById('yellowsquare').style.top = getRandomPosition();
+                    document.getElementById('redsquare').style.left = getRandomPosition();
+                    document.getElementById('redsquare').style.top = getRandomPosition();
+                }, 2000);
             }
-            
+
             function getRandomPosition() {
                 return Math.floor(Math.random () * 80) + "vw";
             }
@@ -208,7 +214,6 @@
                 if (isGameRunning) {
                     counter = counter + 1;
                     document.getElementById('score').innerText = counter;
-                    moveSquares();
                 }            
             };
         </script>
