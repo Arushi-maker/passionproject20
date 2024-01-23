@@ -29,7 +29,7 @@
             color: black;
             text-align: center;
         }
-        #button,
+        #redsquare,
         #bluesquare,
         #yellowsquare,
         #greensquare {
@@ -41,7 +41,7 @@
             margin: 0 auto;
             text-align: center;
         }
-        #button {
+        #redsquare {
             background-color: red;
         }
         #bluesquare {
@@ -135,7 +135,7 @@
         <h1>Red Square Clicker Game</h1>
         <p>Click the red square to earn points. Don't be fooled by the trickery!</p>
         <div id="score">0</div>
-        <div id="button">GREEN</div>
+        <div id="redsquare">GREEN</div>
         <div id="bluesquare">CLICK THE RED SQUARE</div>
         <div id="yellowsquare">RED</div>
         <div id="greensquare">BLUE</div>
@@ -144,6 +144,16 @@
             let counter = 0;
             let isGameRunning = false;
             let currentTime = 120;
+
+            function moveSquare(squareId) {
+                const square = document.getElementById(squareId);
+                square.style.left = getRandomPosition();
+                square.style.top = getRandomPosition();
+            }
+
+            function getRandomPosition() {
+                return Math.floor(Math.random () * 80) + "vw";
+            }
 
             function handleQuestionnaireSubmit() {
                 var anxietyForm = document.getElementById("anxietyForm1");
@@ -172,16 +182,6 @@
                     moveSquare('yellowsquare');
                     moveSquare('redsquare');
                 }, 2000);
-            }
-
-            function moveSquare(squareId) {
-                const square = document.getElementById(squareId);
-                square.style.left = getRandomPosition();
-                square.style.top = getRandomPosition();
-            }
-
-            function getRandomPosition() {
-                return Math.floor(Math.random () * 80) + "vw";
             }
             
             function areAllQuestionsAnswered(form) {
@@ -212,7 +212,7 @@
                 alert("Game Over! You final score is: " + counter);
             }
 
-            document.getElementById('button').onclick = () => {
+            document.getElementById('redsquare').onclick = () => {
                 if (isGameRunning) {
                     counter = counter + 1;
                     document.getElementById('score').innerText = counter;
