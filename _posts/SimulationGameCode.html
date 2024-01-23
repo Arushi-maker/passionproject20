@@ -167,15 +167,17 @@
 
             function moveSquares() {
                 setInterval(() => {
-                    document.getElementById('bluesquare').style.left = getRandomPosition();
-                    document.getElementById('bluesquare').style.top = getRandomPosition();
-                    document.getElementById('greensquare').style.left = getRandomPosition();
-                    document.getElementById('greensquare').style.top = getRandomPosition();
-                    document.getElementById('yellowsquare').style.left = getRandomPosition();
-                    document.getElementById('yellowsquare').style.top = getRandomPosition();
-                    document.getElementById('redsquare').style.left = getRandomPosition();
-                    document.getElementById('redsquare').style.top = getRandomPosition();
+                    moveSquare('bluesquare');
+                    moveSquare('greensquare');
+                    moveSquare('yellowsquare');
+                    moveSquare('button');
                 }, 2000);
+            }
+
+            function moveSqaure(squareId) {
+                const square = document.getElementById(squareId);
+                square.style.left = getRandomPosition();
+                square.style.top = getRandomPosition();
             }
 
             function getRandomPosition() {
