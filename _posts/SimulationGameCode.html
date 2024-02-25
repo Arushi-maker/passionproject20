@@ -12,12 +12,10 @@
             overflow: hidden;
         }
         #questionnaire {
-            background-image: url('Screenshot (125).png');
-            background-size: cover; 
-            background-position: left top; 
+            display: block;
             color: whitesmoke;
-            font: small-caps 18px Arial; 
-            padding: 20px;
+            font: small-caps 15px Arial;
+            background-image: url('Screenshot (125).png');
         }
         #gameContent {
             display: none;
@@ -40,6 +38,7 @@
             line-height: 30px;
             margin: 0 auto;
             text-align: center;
+            position: absolute;
         }
         #redsquare {
             background-color: red;
@@ -152,18 +151,14 @@
             }
 
             function getRandomPosition() {
-                return Math.floor(Math.random () * 80) + "vw";
+                return Math.floor(Math.random() * 80) + "vw";
             }
 
             function handleQuestionnaireSubmit() {
-                var anxietyForm = document.getElementById("anxietyForm1");
-                var depressionForm = document.getElementById("depressionForm1");
-                
-                if (areAllQuestionsAnswered(anxietyForm) && areAllQuestionsAnswered(depressionForm)) {
-
+                if (areAllQuestionsAnswered()) {
                     var questionnaire = document.getElementById("questionnaire");
                     questionnaire.style.display = "none";
-                
+    
                     var gameContent = document.getElementById("gameContent");
                     gameContent.style.display = "block";
 
@@ -174,14 +169,14 @@
                     alert("Please answer all questions before starting the game.");
                 }
             }
-
+            
             function moveSquares() {
                 setInterval(() => {
                     moveSquare('bluesquare');
                     moveSquare('greensquare');
                     moveSquare('yellowsquare');
                     moveSquare('redsquare');
-                }, 2000);
+                }, 30000); // Move squares every 30 seconds
 
                 document.getElementById('redsquare').addEventListener('click', () => {
                     if (isGameRunning) {
@@ -193,7 +188,7 @@
             
             function areAllQuestionsAnswered(form) {
                 var answeredQuestions = [...form.elements].filter((el) => el.checked);
-                return answeredQuestions.length === 1;
+                return answeredQuestions.length === 3; // Check if all questions are answered
             }
 
             function updateTimer() {
